@@ -178,7 +178,7 @@ model Clientes {
   apellidos     String
   contacto      String
   tipo_cuenta   String
-  numero_cuenta String
+  numero_cuenta String  
   ciudad        String
   ventas        Ventas[]
 }
