@@ -1,0 +1,186 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Comunales {
+  id        String   @id @default(uuid())
+  name      String
+  fincas    Fincas[]
+}
+
+
+
+model Grupos {
+  id      String    @id @default(uuid())
+  nombre  String
+  tipo_cuenta String
+  numero_cuenta Int
+  fincas  Fincas[]
+  compras Compras[]
+}
+
+model Fincas {
+  id           String    @id @default(uuid())
+  ibm          String
+  nombre       String
+  id_grupo     String
+  id_comunales String
+  grupo        Grupos    @relation(fields: [id_grupo], references: [id])
+  comunal    Comunales @relation(fields: [id_comunales], references: [id])
+  recogidas    DetalleRecogidas[]
+}
+
+model Compras {
+  id             String           @id @default(uuid())
+  fecha          DateTime
+  cantidad_total Float
+  id_grupo       String
+  grupo          Grupos           @relation(fields: [id_grupo], references: [id])
+  detalles       DetalleCompras[]
+}
+
+model DetalleCompras {
+  id           String   @id @default(uuid())
+  cantidad     Float
+  subtotal     Decimal  @db.Decimal(10, 2)
+  precio       Decimal  @db.Decimal(10, 2)
+  id_productos String
+  id_compra    String
+  producto     Productos @relation(fields: [id_productos], references: [id])
+  compra       Compras   @relation(fields: [id_compra], references: [id])
+}
+
+model Productos {
+  id                String             @id @default(uuid())
+  nombre            String
+  peso_kilo         Float
+  detalle_compras   DetalleCompras[]
+  detalle_recogidas DetalleRecogidas[]
+  detalle_ventas    DetalleVentas[]
+}
+
+model DetalleRecogidas {
+  id          String   @id @default(uuid())
+  id_finca    String
+  cantidad    Float
+  id_recogida String
+  id_producto String
+  finca       Fincas    @relation(fields: [id_finca], references: [id])
+  recogida    Recogidas @relation(fields: [id_recogida], references: [id])
+  producto    Productos @relation(fields: [id_producto], references: [id])
+}
+
+model Recogidas {
+  id             String             @id @default(uuid())
+  fecha          DateTime
+  anio           Int
+  mes            Int
+  semana         Int
+  dia            Int
+  placa_vehiculo String
+  cantidad_total Float
+  id_persona     String
+  persona        Personas           @relation(fields: [id_persona], references: [id])
+  vehiculo       Vehiculos          @relation(fields: [placa_vehiculo], references: [placa])
+  detalle        DetalleRecogidas[]
+  coteros        RecogidaCoteros[]
+}
+
+model RecogidaCoteros {
+  id_recogida String
+  id_persona  String
+  recogida    Recogidas @relation(fields: [id_recogida], references: [id])
+  persona     Personas  @relation(fields: [id_persona], references: [id])
+
+  @@id([id_recogida, id_persona])
+}
+
+model Personas {
+  id               String           @id @default(uuid())
+  cedula           String           @unique
+  nombres          String
+  apellidos        String
+  contacto         String
+  correo           String           @unique
+  usuarios         Usuarios[]
+  roles            PersonaRoles[]
+  recogidas        Recogidas[]
+  recogida_coteros RecogidaCoteros[]
+}
+
+model Usuarios {
+  id         String   @id @default(uuid())
+  username   String   @unique
+  password   String
+  estado     String
+  id_persona String
+  persona    Personas @relation(fields: [id_persona], references: [id])
+}
+
+model PersonaRoles {
+  id_persona String
+  id_rol     String
+  persona    Personas @relation(fields: [id_persona], references: [id])
+  rol        Roles    @relation(fields: [id_rol], references: [id_rol])
+
+  @@id([id_persona, id_rol])
+}
+
+model Roles {
+  id_rol   String        @id @default(uuid())
+  nombre   String
+  personas PersonaRoles[]
+}
+
+model Vehiculos {
+  placa       String      @id
+  marca       String
+  descipcion  String
+  capacidad   Float
+  recogidas   Recogidas[]
+}
+
+model DetalleVentas {
+  id          String    @id @default(uuid())
+  cantidad    Float
+  precio      Decimal   @db.Decimal(10, 2)
+  subtotal    Decimal   @db.Decimal(10, 2)
+  id_producto String
+  id_venta    String
+  producto    Productos @relation(fields: [id_producto], references: [id])
+  venta       Ventas    @relation(fields: [id_venta], references: [id])
+}
+
+model Ventas {
+  id             String          @id @default(uuid())
+  fecha          DateTime
+  cantidad_total Float
+  id_cliente     String
+  cliente        Clientes        @relation(fields: [id_cliente], references: [id])
+  detalles       DetalleVentas[]
+}
+
+model Clientes {
+  id            String   @id @default(uuid())
+  cedula        String   @unique
+  nombres       String
+  apellidos     String
+  contacto      String
+  tipo_cuenta   String
+  numero_cuenta String
+  ciudad        String
+  ventas        Ventas[]
+}
+
+

@@ -1,0 +1,7 @@
+import { IsNotEmpty, IsString } from 'class-validator';
+
+export class CreateComunaleDto {
+  @IsString()
+  @IsNotEmpty()
+  name: string;
+}
