@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  BadRequestException,
+  NotFoundException,
+} from '@nestjs/common';
 import { ClientesService } from './clientes.service';
 import { CreateClienteDto } from './dto/create-cliente.dto';
 import { UpdateClienteDto } from './dto/update-cliente.dto';
@@ -8,27 +18,39 @@ export class ClientesController {
   constructor(private readonly clientesService: ClientesService) {}
 
   @Post()
-  create(@Body() createClienteDto: CreateClienteDto) {
+  async create(@Body() createClienteDto: CreateClienteDto) {
     return this.clientesService.create(createClienteDto);
   }
 
   @Get()
-  findAll() {
+  async findAll() {
     return this.clientesService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.clientesService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return this.clientesService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateClienteDto: UpdateClienteDto) {
-    return this.clientesService.update(+id, updateClienteDto);
+  async update(
+    @Param('id') id: string,
+    @Body() updateClienteDto: UpdateClienteDto,
+  ) {
+    return this.clientesService.update(id, updateClienteDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.clientesService.remove(+id);
+  async remove(@Param('id') id: string) {
+    if (!id) {
+      throw new BadRequestException('El ID es requerido');
+    } else {
+      const buscar = this.clientesService.findOne(id);
+      if (buscar == null) {
+        throw new NotFoundException('El cliente no existe');
+      } else {
+        return this.clientesService.remove(id);
+      }
+    }
   }
 }

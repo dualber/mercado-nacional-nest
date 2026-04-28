@@ -23,6 +23,6 @@ import { ClientesModule } from './clientes/clientes.module';
   imports: [PrismaModule, ComunalesModule, GruposModule, FincasModule, ComprasModule, DetalleComprasModule, ProductosModule, DetalleRecogidasModule, RecogidasModule, RecogidaCoterosModule, PersonasModule, UsuariosModule, PersonaRolesModule, RolesModule, VehiculosModule, DetalleVentasModule, VentasModule, ClientesModule],
   controllers: [],
   providers: [],
-  exports: [PrismaModule],
+
 })
 export class AppModule {}
