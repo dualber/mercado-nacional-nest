@@ -19,12 +19,12 @@ export class DetalleComprasController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.detalleComprasService.findOne(+id);
+    return this.detalleComprasService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateDetalleCompraDto: UpdateDetalleCompraDto) {
-    return this.detalleComprasService.update(+id, updateDetalleCompraDto);
+    return this.detalleComprasService.update(id, updateDetalleCompraDto);
   }
 
   @Delete(':id')

@@ -10,11 +10,6 @@ export class UpdateDetalleCompraDto {
   @IsOptional()
   @IsNumber({ maxDecimalPlaces: 2 })
   @Min(1)
-  subtotal?: number;
-
-  @IsOptional()
-  @IsNumber({ maxDecimalPlaces: 2 })
-  @Min(1)
   precio?: number;
 
   @IsOptional()

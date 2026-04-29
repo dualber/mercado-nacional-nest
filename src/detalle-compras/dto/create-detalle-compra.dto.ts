@@ -7,10 +7,6 @@ export class CreateDetalleCompraDto {
 
   @IsNumber({ maxDecimalPlaces: 2 })
   @Min(1)
-  subtotal: number;
-
-  @IsNumber({ maxDecimalPlaces: 2 })
-  @Min(1)
   precio: number;
 
   @IsUUID()

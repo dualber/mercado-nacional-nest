@@ -29,7 +29,7 @@ export class ComprasService {
   }
 
   update(id: string, updateCompraDto: UpdateCompraDto) {
-    return this.prisma.compras.update({where: {id}, data: updateCompraDto});
+    return this.prisma.compras.update({ data: updateCompraDto,where: {id}});
   }
 
   remove(id: string) {

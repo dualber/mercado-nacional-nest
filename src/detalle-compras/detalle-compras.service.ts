@@ -1,27 +1,49 @@
 import { Injectable } from '@nestjs/common';
 import { CreateDetalleCompraDto } from './dto/create-detalle-compra.dto';
 import { UpdateDetalleCompraDto } from './dto/update-detalle-compra.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
+
 
 @Injectable()
 export class DetalleComprasService {
-  
-  create(createDetalleCompraDto: CreateDetalleCompraDto) {
-    return 'This action adds a new detalleCompra';
+  constructor(private prisma: PrismaService){}
+
+  async create(createDetalleCompraDto: CreateDetalleCompraDto) {
+    return this.prisma.detalleCompras.create({
+      data:{
+        cantidad:createDetalleCompraDto.cantidad,
+        precio:createDetalleCompraDto.precio,
+        producto:{
+          connect:{
+            id:createDetalleCompraDto.id_productos,
+          }
+        },
+        compra:{
+          connect:{
+            id:createDetalleCompraDto.id_productos,
+          }
+        },
+        subtotal: createDetalleCompraDto.cantidad *createDetalleCompraDto.precio
+      }
+    });
+    console.log(createDetalleCompraDto.cantidad *createDetalleCompraDto.precio)
   }
 
-  findAll() {
-    return `This action returns all detalleCompras`;
+  async findAll() {
+    return this.prisma.detalleCompras.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} detalleCompra`;
+  async findOne(id: string) {
+    return this.prisma.detalleCompras.findUnique({where:{id}});
   }
 
-  update(id: number, updateDetalleCompraDto: UpdateDetalleCompraDto) {
-    return `This action updates a #${id} detalleCompra`;
+  async update(id: string, updateDetalleCompraDto: UpdateDetalleCompraDto) {
+    return this.prisma.detalleCompras.update({data:updateDetalleCompraDto,where:{id}});
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} detalleCompra`;
+  async remove(id: string) {
+    return this.prisma.detalleCompras.delete({
+      where:{id}
+    });
   }
 }
