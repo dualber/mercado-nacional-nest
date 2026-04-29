@@ -1,33 +1,39 @@
-import { PartialType } from '@nestjs/mapped-types';
 import { CreateClienteDto } from './create-cliente.dto';
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
-export class UpdateClienteDto extends PartialType(CreateClienteDto) {
-  @IsString()
+export class UpdateClienteDto {
   @IsOptional()
-  cedula: string;
+  @IsString()
+  @IsNotEmpty()
+  cedula?: string;
 
-  @IsString()
   @IsOptional()
-  nombres: string;
+  @IsString()
+  @IsNotEmpty()
+  nombres?: string;
 
-  @IsString()
   @IsOptional()
-  apellidos: string;
+  @IsString()
+  @IsNotEmpty()
+  apellidos?: string;
 
-  @IsString()
   @IsOptional()
-  contacto: string;
+  @IsString()
+  @IsNotEmpty()
+  contacto?: string;
 
-  @IsString()
   @IsOptional()
-  tipo_cuenta: string;
+  @IsString()
+  @IsNotEmpty()
+  tipo_cuenta?: string;
 
-  @IsString()
   @IsOptional()
-  numero_cuenta: string;
+  @IsString()
+  @IsNotEmpty()
+  numero_cuenta?: string;
 
-  @IsString()
   @IsOptional()
-  ciudad: string;
+  @IsString()
+  @IsNotEmpty()
+  ciudad?: string;
 }

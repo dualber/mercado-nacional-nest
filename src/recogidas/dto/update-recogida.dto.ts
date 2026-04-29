@@ -1,4 +1,41 @@
-import { PartialType } from '@nestjs/mapped-types';
 import { CreateRecogidaDto } from './create-recogida.dto';
+import { IsDateString, IsInt, IsNumber, IsOptional, IsString, IsUUID, Min } from 'class-validator';
 
-export class UpdateRecogidaDto extends PartialType(CreateRecogidaDto) {}
+export class UpdateRecogidaDto {
+  @IsOptional()
+  @IsDateString()
+  fecha?: string;
+
+  @IsOptional()
+  @IsInt()
+  @Min(0)
+  anio?: number;
+
+  @IsOptional()
+  @IsInt()
+  @Min(1)
+  mes?: number;
+
+  @IsOptional()
+  @IsInt()
+  @Min(1)
+  semana?: number;
+
+  @IsOptional()
+  @IsInt()
+  @Min(1)
+  dia?: number;
+
+  @IsOptional()
+  @IsString()
+  placa_vehiculo?: string;
+
+  @IsOptional()
+  @IsNumber()
+  @Min(0)
+  cantidad_total?: number;
+
+  @IsOptional()
+  @IsUUID()
+  id_persona?: string;
+}

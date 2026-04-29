@@ -18,32 +18,36 @@ export class PrismaClientExceptionFilter implements ExceptionFilter {
     let status = HttpStatus.INTERNAL_SERVER_ERROR;
     let message = 'Error interno del servidor';
     let error = 'INTERNAL_ERROR';
-
-    // 🔥 1. Manejo específico de Prisma
+    let code = '';
+  
     if (exception instanceof Prisma.PrismaClientKnownRequestError) {
       switch (exception.code) {
         case 'P2025':
           status = HttpStatus.NOT_FOUND;
-          message = 'El registro que intentas modificar no existe';
+          message = 'El registro que intentas modificar o eliminar no existe';
           error = 'NOT_FOUND';
-          break;
+          code = exception.code;
+            break;
 
         case 'P2002':
           status = HttpStatus.CONFLICT;
           message = `Ya existe un registro con ese valor único`;
           error = 'UNIQUE_CONSTRAINT';
+          code = exception.code;
           break;
 
         case 'P2003':
           status = HttpStatus.BAD_REQUEST;
           message = 'Relación inválida entre registros (foreign key)';
           error = 'FOREIGN_KEY_ERROR';
+          code = exception.code;
           break;
 
         default:
           status = HttpStatus.BAD_REQUEST;
           message = 'Error en la base de datos';
           error = exception.code;
+          code = exception.code;
       }
     }
 
@@ -74,6 +78,7 @@ export class PrismaClientExceptionFilter implements ExceptionFilter {
       error,
       timestamp: new Date().toISOString(),
       path: request.url,
+      code,
     });
   }
 }

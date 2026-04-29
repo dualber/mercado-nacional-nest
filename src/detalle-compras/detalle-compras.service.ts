@@ -4,6 +4,7 @@ import { UpdateDetalleCompraDto } from './dto/update-detalle-compra.dto';
 
 @Injectable()
 export class DetalleComprasService {
+  
   create(createDetalleCompraDto: CreateDetalleCompraDto) {
     return 'This action adds a new detalleCompra';
   }

@@ -1,4 +1,12 @@
-import { PartialType } from '@nestjs/mapped-types';
 import { CreateRecogidaCoteroDto } from './create-recogida-cotero.dto';
+import { IsOptional, IsUUID } from 'class-validator';
 
-export class UpdateRecogidaCoteroDto extends PartialType(CreateRecogidaCoteroDto) {}
+export class UpdateRecogidaCoteroDto {
+  @IsOptional()
+  @IsUUID()
+  id_recogida?: string;
+
+  @IsOptional()
+  @IsUUID()
+  id_persona?: string;
+}

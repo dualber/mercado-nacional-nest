@@ -19,16 +19,16 @@ export class ComprasController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.comprasService.findOne(+id);
+    return this.comprasService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateCompraDto: UpdateCompraDto) {
-    return this.comprasService.update(+id, updateCompraDto);
+    return this.comprasService.update(id, updateCompraDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.comprasService.remove(+id);
+    return this.comprasService.remove(id);
   }
 }

@@ -1,26 +1,33 @@
 import { Injectable } from '@nestjs/common';
 import { CreateProductoDto } from './dto/create-producto.dto';
 import { UpdateProductoDto } from './dto/update-producto.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class ProductosService {
-  create(createProductoDto: CreateProductoDto) {
-    return 'This action adds a new producto';
+  constructor(private prisma:PrismaService){}
+  async create(createProductoDto: CreateProductoDto) {
+    return this.prisma.productos.create({
+      data:createProductoDto,
+    });
   }
 
-  findAll() {
-    return `This action returns all productos`;
+  async findAll() {
+    return this.prisma.productos.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} producto`;
+  async findOne(id: string) {
+    this.prisma.productos.findUnique({where:{id}});
   }
 
-  update(id: number, updateProductoDto: UpdateProductoDto) {
-    return `This action updates a #${id} producto`;
+  async update(id: string, updateProductoDto: UpdateProductoDto) {
+    return this.prisma.productos.update({
+      data:UpdateProductoDto,
+      where:{id},
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} producto`;
+  async remove(id: string) {
+    return this.prisma.productos.delete({where:{id}});
   }
 }
