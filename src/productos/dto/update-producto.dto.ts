@@ -4,7 +4,6 @@ import { IsNotEmpty, IsNumber, IsOptional, IsString, Min } from 'class-validator
 export class UpdateProductoDto {
   @IsOptional()
   @IsString()
-  @IsNotEmpty()
   nombre?: string;
 
   @IsOptional()

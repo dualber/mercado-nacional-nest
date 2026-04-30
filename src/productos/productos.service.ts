@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { CreateProductoDto } from './dto/create-producto.dto';
 import { UpdateProductoDto } from './dto/update-producto.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { Compras } from '@prisma/client';
+
 
 @Injectable()
 export class ProductosService {
@@ -17,7 +19,7 @@ export class ProductosService {
   }
 
   async findOne(id: string) {
-    this.prisma.productos.findUnique({where:{id}});
+    return this.prisma.productos.findUnique({where:{id}});
   }
 
   async update(id: string, updateProductoDto: UpdateProductoDto) {

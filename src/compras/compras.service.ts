@@ -6,7 +6,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 @Injectable()
 export class ComprasService {
   constructor(private prisma: PrismaService) {}
-  create(createCompraDto: CreateCompraDto) {
+  async create(createCompraDto: CreateCompraDto) {
     return this.prisma.compras.create({
       data:{
         fecha: new Date(createCompraDto.fecha),
@@ -20,19 +20,19 @@ export class ComprasService {
     });
   }
 
-  findAll() {
+  async findAll() {
     return this.prisma.compras.findMany();
   }
 
-  findOne(id: string) {
+  async findOne(id: string) {
     return this.prisma.compras.findUnique({where: {id}});
   }
 
-  update(id: string, updateCompraDto: UpdateCompraDto) {
+  async update(id: string, updateCompraDto: UpdateCompraDto) {
     return this.prisma.compras.update({ data: updateCompraDto,where: {id}});
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} compra`;
+  async remove(id: string) {
+    return this.prisma.compras.delete({where:{id}});
   }
 }

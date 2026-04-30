@@ -29,6 +29,6 @@ export class DetalleComprasController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.detalleComprasService.remove(+id);
+    return this.detalleComprasService.remove(id);
   }
 }

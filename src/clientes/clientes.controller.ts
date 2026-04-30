@@ -42,15 +42,7 @@ export class ClientesController {
 
   @Delete(':id')
   async remove(@Param('id') id: string) {
-    if (!id) {
-      throw new BadRequestException('El ID es requerido');
-    } else {
-      const buscar = this.clientesService.findOne(id);
-      if (buscar == null) {
-        throw new NotFoundException('El cliente no existe');
-      } else {
         return this.clientesService.remove(id);
       }
-    }
   }
-}
+
