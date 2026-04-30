@@ -14,7 +14,7 @@ export class UpdateDetalleCompraDto {
 
   @IsOptional()
   @IsUUID()
-  id_productos?: string;
+  id_producto?: string;
 
   @IsOptional()
   @IsUUID()

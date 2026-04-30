@@ -10,7 +10,7 @@ export class CreateDetalleCompraDto {
   precio: number;
 
   @IsUUID()
-  id_productos: string;
+  id_producto: string;
 
   @IsUUID()
   id_compra: string;

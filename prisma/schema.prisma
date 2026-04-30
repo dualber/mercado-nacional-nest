@@ -56,10 +56,11 @@ model DetalleCompras {
   cantidad     Float
   subtotal     Decimal  @db.Decimal(10, 2)
   precio       Decimal  @db.Decimal(10, 2)
-  id_productos String
+  id_producto String
   id_compra    String
-  producto     Productos @relation(fields: [id_productos], references: [id])
+  producto     Productos @relation(fields: [id_producto], references: [id])
   compra       Compras   @relation(fields: [id_compra], references: [id])
+  @@unique([id_producto,id_compra])
 }
 
 model Productos {
