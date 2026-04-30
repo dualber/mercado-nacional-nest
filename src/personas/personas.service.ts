@@ -4,23 +4,23 @@ import { UpdatePersonaDto } from './dto/update-persona.dto';
 
 @Injectable()
 export class PersonasService {
-  create(createPersonaDto: CreatePersonaDto) {
-    return 'This action adds a new persona';
+  async create(createPersonaDto: CreatePersonaDto) {
+    return await 'This action adds a new persona';
   }
 
-  findAll() {
-    return `This action returns all personas`;
+  async findAll() {
+    return await `This action returns all personas`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} persona`;
+  async findOne(id: number) {
+    return await `This action returns a #${id} persona`;
   }
 
-  update(id: number, updatePersonaDto: UpdatePersonaDto) {
-    return `This action updates a #${id} persona`;
+  async update(id: number, updatePersonaDto: UpdatePersonaDto) {
+    return await `This action updates a #${id} persona`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} persona`;
+  async remove(id: number) {
+    return await `This action removes a #${id} persona`;
   }
 }

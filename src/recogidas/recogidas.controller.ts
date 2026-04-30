@@ -8,27 +8,27 @@ export class RecogidasController {
   constructor(private readonly recogidasService: RecogidasService) {}
 
   @Post()
-  create(@Body() createRecogidaDto: CreateRecogidaDto) {
-    return this.recogidasService.create(createRecogidaDto);
+  async create(@Body() createRecogidaDto: CreateRecogidaDto) {
+    return await this.recogidasService.create(createRecogidaDto);
   }
 
   @Get()
-  findAll() {
-    return this.recogidasService.findAll();
+  async findAll() {
+    return await this.recogidasService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.recogidasService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return await this.recogidasService.findOne(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateRecogidaDto: UpdateRecogidaDto) {
-    return this.recogidasService.update(+id, updateRecogidaDto);
+  async update(@Param('id') id: string, @Body() updateRecogidaDto: UpdateRecogidaDto) {
+    return await this.recogidasService.update(+id, updateRecogidaDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.recogidasService.remove(+id);
+  async remove(@Param('id') id: string) {
+    return await this.recogidasService.remove(+id);
   }
 }

@@ -8,8 +8,8 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class DetalleComprasService {
   constructor(private prisma: PrismaService){}
 
-  create(createDetalleCompraDto: CreateDetalleCompraDto) {
-    return this.prisma.detalleCompras.create({
+  async create(createDetalleCompraDto: CreateDetalleCompraDto) {
+    const crear = await this.prisma.detalleCompras.create({
       data:{
         cantidad:createDetalleCompraDto.cantidad,
         precio:createDetalleCompraDto.precio,
@@ -26,27 +26,55 @@ export class DetalleComprasService {
         subtotal: createDetalleCompraDto.cantidad * createDetalleCompraDto.precio
       }
     });
+
+    await this.actualizarCantidadTotal(createDetalleCompraDto.id_compra);
+
+    return crear;
     
   }
 
-  findAll() {
-    return this.prisma.detalleCompras.findMany();
+  async actualizarCantidadTotal(idCompra: string){
+
+    const detalles = await this.prisma.detalleCompras.findMany({
+      where:{id_compra:idCompra}
+    });
+
+    const total = detalles.reduce((suma,d) => suma + d.cantidad, 0) 
+
+      return this.prisma.compras.update({
+      where:{id:idCompra},
+      data:{cantidad_total: total}
+     })
   }
 
-  findOne(id: string) {
-    return this.prisma.detalleCompras.findUnique({where:{id}});
+  async findAll() {
+    return await this.prisma.detalleCompras.findMany();
   }
 
-  update(id: string, updateDetalleCompraDto: UpdateDetalleCompraDto) {
-    return this.prisma.detalleCompras.update({data:{
+  async findOne(id: string) {
+    return await this.prisma.detalleCompras.findUnique({where:{id}});
+  }
+
+  async update(id: string, updateDetalleCompraDto: UpdateDetalleCompraDto) {
+    const actualizar = await this.prisma.detalleCompras.update({data:{
       ...updateDetalleCompraDto,
       subtotal:updateDetalleCompraDto.cantidad * updateDetalleCompraDto.precio,},
-       where:{id}});
+      where:{id}});
+    
+      await this.actualizarCantidadTotal(updateDetalleCompraDto.id_compra);
+
+      return actualizar;
+
+
   }
 
-  remove(id: string) {
-    return this.prisma.detalleCompras.delete({
+ async remove(id: string) {
+    const eliminar = await this.prisma.detalleCompras.delete({
       where:{id}
     });
+
+    await this.actualizarCantidadTotal(eliminar.id_compra)
+    return eliminar;
+
   }
 }

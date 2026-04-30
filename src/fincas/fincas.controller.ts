@@ -8,27 +8,27 @@ export class FincasController {
   constructor(private readonly fincasService: FincasService) {}
 
   @Post()
-  create(@Body() createFincaDto: CreateFincaDto) {
-    return this.fincasService.create(createFincaDto);
+  async create(@Body() createFincaDto: CreateFincaDto) {
+    return await this.fincasService.create(createFincaDto);
   }
 
   @Get()
-  findAll() {
-    return this.fincasService.findAll();
+  async findAll() {
+    return await this.fincasService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.fincasService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return await this.fincasService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateFincaDto: UpdateFincaDto) {
-    return this.fincasService.update(+id, updateFincaDto);
+  async update(@Param('id') id: string, @Body() updateFincaDto: UpdateFincaDto) {
+    return await this.fincasService.update(id, updateFincaDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.fincasService.remove(+id);
+  async remove(@Param('id') id: string) {
+    return await this.fincasService.remove(id);
   }
 }

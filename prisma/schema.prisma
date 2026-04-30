@@ -44,7 +44,7 @@ model Fincas {
 model Compras {
   id             String           @id @default(uuid())
   fecha          DateTime
-  cantidad_total Float
+  cantidad_total Int
   id_grupo       String
   grupo          Grupos           @relation(fields: [id_grupo], references: [id])
   detalles       DetalleCompras[]
@@ -53,7 +53,7 @@ model Compras {
 
 model DetalleCompras {
   id           String   @id @default(uuid())
-  cantidad     Float
+  cantidad     Int
   subtotal     Decimal  @db.Decimal(10, 2)
   precio       Decimal  @db.Decimal(10, 2)
   id_producto String
@@ -75,7 +75,7 @@ model Productos {
 model DetalleRecogidas {
   id          String   @id @default(uuid())
   id_finca    String
-  cantidad    Float
+  cantidad    Int
   id_recogida String
   id_producto String
   finca       Fincas    @relation(fields: [id_finca], references: [id])

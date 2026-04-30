@@ -8,34 +8,37 @@ export class ComprasController {
   constructor(private readonly comprasService: ComprasService) {}
 
   @Post()
-  create(@Body() createCompraDto: CreateCompraDto) {
-    return this.comprasService.create(createCompraDto);
+  async create(@Body() createCompraDto: CreateCompraDto) {
+    return await this.comprasService.create(createCompraDto);
   }
 
   @Get()
-  findAll() {
-    return this.comprasService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.comprasService.findOne(id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCompraDto: UpdateCompraDto) {
-    return this.comprasService.update(id, updateCompraDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.comprasService.remove(id);
+  async findAll() {
+    return await this.comprasService.findAll();
   }
 
   //prueba de las cantidades
   @Get('test-total')
-  contarCantidades(){
-    return this.comprasService.contarCantidades();
+ async contarCantidades(){
+    return  this.comprasService.contarCantidades();
   }
+  
+
+  @Get(':id')
+  async findOne(@Param('id') id: string) {
+    return await this.comprasService.findOne(id);
+  }
+
+  @Patch(':id')
+  async update(@Param('id') id: string, @Body() updateCompraDto: UpdateCompraDto) {
+    return await this.comprasService.update(id, updateCompraDto);
+  }
+
+  @Delete(':id')
+  async remove(@Param('id') id: string) {
+    return await this.comprasService.remove(id);
+  }
+
+  
 
 }

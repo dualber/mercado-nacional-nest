@@ -8,27 +8,27 @@ export class GruposController {
   constructor(private readonly gruposService: GruposService) {}
 
   @Post()
-  create(@Body() createGrupoDto: CreateGrupoDto) {
-    return this.gruposService.create(createGrupoDto);
+  async create(@Body() createGrupoDto: CreateGrupoDto) {
+    return await this.gruposService.create(createGrupoDto);
   }
 
   @Get()
-  findAll() {
-    return this.gruposService.findAll();
+  async findAll() {
+    return await this.gruposService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.gruposService.findOne(id);
+  async findOne(@Param('id') id: string) {
+    return await this.gruposService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateGrupoDto: UpdateGrupoDto) {
-    return this.gruposService.update(id, updateGrupoDto);
+  async update(@Param('id') id: string, @Body() updateGrupoDto: UpdateGrupoDto) {
+    return await this.gruposService.update(id, updateGrupoDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.gruposService.remove(id);
+  async remove(@Param('id') id: string) {
+    return await this.gruposService.remove(id);
   }
 }

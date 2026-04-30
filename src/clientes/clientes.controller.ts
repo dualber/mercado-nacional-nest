@@ -19,17 +19,17 @@ export class ClientesController {
 
   @Post()
   async create(@Body() createClienteDto: CreateClienteDto) {
-    return this.clientesService.create(createClienteDto);
+    return await this.clientesService.create(createClienteDto);
   }
 
   @Get()
   async findAll() {
-    return this.clientesService.findAll();
+    return await this.clientesService.findAll();
   }
 
   @Get(':id')
   async findOne(@Param('id') id: string) {
-    return this.clientesService.findOne(id);
+    return await this.clientesService.findOne(id);
   }
 
   @Patch(':id')
@@ -37,12 +37,12 @@ export class ClientesController {
     @Param('id') id: string,
     @Body() updateClienteDto: UpdateClienteDto,
   ) {
-    return this.clientesService.update(id, updateClienteDto);
+    return await this.clientesService.update(id, updateClienteDto);
   }
 
   @Delete(':id')
   async remove(@Param('id') id: string) {
-        return this.clientesService.remove(id);
+        return await this.clientesService.remove(id);
       }
   }
 

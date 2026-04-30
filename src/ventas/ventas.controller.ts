@@ -8,27 +8,27 @@ export class VentasController {
   constructor(private readonly ventasService: VentasService) {}
 
   @Post()
-  create(@Body() createVentaDto: CreateVentaDto) {
-    return this.ventasService.create(createVentaDto);
+  async create(@Body() createVentaDto: CreateVentaDto) {
+    return await this.ventasService.create(createVentaDto);
   }
 
   @Get()
-  findAll() {
-    return this.ventasService.findAll();
+  async findAll() {
+    return await this.ventasService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.ventasService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return await this.ventasService.findOne(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateVentaDto: UpdateVentaDto) {
-    return this.ventasService.update(+id, updateVentaDto);
+  async update(@Param('id') id: string, @Body() updateVentaDto: UpdateVentaDto) {
+    return await this.ventasService.update(+id, updateVentaDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.ventasService.remove(+id);
+  async remove(@Param('id') id: string) {
+    return await this.ventasService.remove(+id);
   }
 }

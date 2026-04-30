@@ -8,37 +8,39 @@ import { CreateDetalleCompraDto } from 'src/detalle-compras/dto/create-detalle-c
 export class ComprasService {
   constructor(private prisma: PrismaService) {}
   async create(createCompraDto: CreateCompraDto) {
-    return this.prisma.compras.create({
-      data:{
+    return await this.prisma.compras.create({
+      data: {
         fecha: new Date(createCompraDto.fecha),
         grupo: {
-          connect:{
-            id: createCompraDto.id_grupo
-          }
+          connect: {
+            id: createCompraDto.id_grupo,
+          },
         },
-      cantidad_total: 0 //traer las cantidades de las compras y sumarlas
-      }
+        cantidad_total: 0, 
+      },
     });
   }
 
-async contarCantidades(){
-      const detalles = await this.prisma.detalleCompras.findMany();
-      return detalles;
+  async contarCantidades() {
+    const detalles = await this.prisma.detalleCompras.findMany();
+    const cantidad_total = detalles.reduce((acc,d) => acc + d.cantidad, 0)
+    console.log(cantidad_total)
+    return Number(cantidad_total);
   }
 
-findAll() {
-    return this.prisma.compras.findMany();
+  async findAll() {
+    return await this.prisma.compras.findMany();
   }
 
-findOne(id: string) {
-    return this.prisma.compras.findUnique({where: {id}});
+  async findOne(id: string) {
+    return await this.prisma.compras.findUnique({ where: { id } });
   }
 
- update(id: string, updateCompraDto: UpdateCompraDto) {
-    return this.prisma.compras.update({ data: updateCompraDto,where: {id}});
+  async update(id: string, updateCompraDto: UpdateCompraDto) {
+    return await this.prisma.compras.update({ data: updateCompraDto, where: { id } });
   }
 
-remove(id: string) {
-    return this.prisma.compras.delete({where:{id}});
+  async remove(id: string) {
+    return await this.prisma.compras.delete({ where: { id } });
   }
 }

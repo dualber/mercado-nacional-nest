@@ -8,27 +8,27 @@ export class DetalleRecogidasController {
   constructor(private readonly detalleRecogidasService: DetalleRecogidasService) {}
 
   @Post()
-  create(@Body() createDetalleRecogidaDto: CreateDetalleRecogidaDto) {
-    return this.detalleRecogidasService.create(createDetalleRecogidaDto);
+  async create(@Body() createDetalleRecogidaDto: CreateDetalleRecogidaDto) {
+    return await this.detalleRecogidasService.create(createDetalleRecogidaDto);
   }
 
   @Get()
-  findAll() {
-    return this.detalleRecogidasService.findAll();
+  async findAll() {
+    return await this.detalleRecogidasService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.detalleRecogidasService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return await this.detalleRecogidasService.findOne(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDetalleRecogidaDto: UpdateDetalleRecogidaDto) {
-    return this.detalleRecogidasService.update(+id, updateDetalleRecogidaDto);
+  async update(@Param('id') id: string, @Body() updateDetalleRecogidaDto: UpdateDetalleRecogidaDto) {
+    return await this.detalleRecogidasService.update(+id, updateDetalleRecogidaDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.detalleRecogidasService.remove(+id);
+  async remove(@Param('id') id: string) {
+    return await this.detalleRecogidasService.remove(+id);
   }
 }

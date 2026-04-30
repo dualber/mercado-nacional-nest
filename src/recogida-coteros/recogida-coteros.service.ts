@@ -4,23 +4,23 @@ import { UpdateRecogidaCoteroDto } from './dto/update-recogida-cotero.dto';
 
 @Injectable()
 export class RecogidaCoterosService {
-  create(createRecogidaCoteroDto: CreateRecogidaCoteroDto) {
-    return 'This action adds a new recogidaCotero';
+  async create(createRecogidaCoteroDto: CreateRecogidaCoteroDto) {
+    return await 'This action adds a new recogidaCotero';
   }
 
-  findAll() {
-    return `This action returns all recogidaCoteros`;
+  async findAll() {
+    return await `This action returns all recogidaCoteros`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} recogidaCotero`;
+  async findOne(id: number) {
+    return await `This action returns a #${id} recogidaCotero`;
   }
 
-  update(id: number, updateRecogidaCoteroDto: UpdateRecogidaCoteroDto) {
-    return `This action updates a #${id} recogidaCotero`;
+  async update(id: number, updateRecogidaCoteroDto: UpdateRecogidaCoteroDto) {
+    return await `This action updates a #${id} recogidaCotero`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} recogidaCotero`;
+  async remove(id: number) {
+    return await `This action removes a #${id} recogidaCotero`;
   }
 }

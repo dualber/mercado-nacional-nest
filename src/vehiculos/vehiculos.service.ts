@@ -4,23 +4,23 @@ import { UpdateVehiculoDto } from './dto/update-vehiculo.dto';
 
 @Injectable()
 export class VehiculosService {
-  create(createVehiculoDto: CreateVehiculoDto) {
-    return 'This action adds a new vehiculo';
+  async create(createVehiculoDto: CreateVehiculoDto) {
+    return await 'This action adds a new vehiculo';
   }
 
-  findAll() {
-    return `This action returns all vehiculos`;
+  async findAll() {
+    return await `This action returns all vehiculos`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} vehiculo`;
+  async findOne(id: number) {
+    return await `This action returns a #${id} vehiculo`;
   }
 
-  update(id: number, updateVehiculoDto: UpdateVehiculoDto) {
-    return `This action updates a #${id} vehiculo`;
+  async update(id: number, updateVehiculoDto: UpdateVehiculoDto) {
+    return await `This action updates a #${id} vehiculo`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} vehiculo`;
+  async remove(id: number) {
+    return await `This action removes a #${id} vehiculo`;
   }
 }

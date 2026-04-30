@@ -9,26 +9,26 @@ export class ProductosController {
 
   @Post()
   async create(@Body() createProductoDto: CreateProductoDto) {
-    return this.productosService.create(createProductoDto);
+    return await this.productosService.create(createProductoDto);
   }
 
   @Get()
   async findAll() {
-    return this.productosService.findAll();
+    return await this.productosService.findAll();
   }
 
   @Get(':id')
   async findOne(@Param('id') id: string) {
-    return this.productosService.findOne(id);
+    return await this.productosService.findOne(id);
   }
 
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateProductoDto: UpdateProductoDto) {
-    return this.productosService.update(id, updateProductoDto);
+    return await this.productosService.update(id, updateProductoDto);
   }
 
   @Delete(':id')
   async remove(@Param('id') id: string) {
-    return this.productosService.remove(id);
+    return await this.productosService.remove(id);
   }
 }

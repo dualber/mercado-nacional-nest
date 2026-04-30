@@ -8,27 +8,27 @@ export class RecogidaCoterosController {
   constructor(private readonly recogidaCoterosService: RecogidaCoterosService) {}
 
   @Post()
-  create(@Body() createRecogidaCoteroDto: CreateRecogidaCoteroDto) {
-    return this.recogidaCoterosService.create(createRecogidaCoteroDto);
+  async create(@Body() createRecogidaCoteroDto: CreateRecogidaCoteroDto) {
+    return await this.recogidaCoterosService.create(createRecogidaCoteroDto);
   }
 
   @Get()
-  findAll() {
-    return this.recogidaCoterosService.findAll();
+  async findAll() {
+    return await this.recogidaCoterosService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.recogidaCoterosService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return await this.recogidaCoterosService.findOne(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateRecogidaCoteroDto: UpdateRecogidaCoteroDto) {
-    return this.recogidaCoterosService.update(+id, updateRecogidaCoteroDto);
+  async update(@Param('id') id: string, @Body() updateRecogidaCoteroDto: UpdateRecogidaCoteroDto) {
+    return await this.recogidaCoterosService.update(+id, updateRecogidaCoteroDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.recogidaCoterosService.remove(+id);
+  async remove(@Param('id') id: string) {
+    return await this.recogidaCoterosService.remove(+id);
   }
 }

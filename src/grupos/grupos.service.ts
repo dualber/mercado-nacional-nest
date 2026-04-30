@@ -6,28 +6,28 @@ import { PrismaService } from 'src/prisma/prisma.service';
 @Injectable()
 export class GruposService {
   constructor(private prisma:PrismaService){}
-  create(createGrupoDto: CreateGrupoDto) {
-    return this.prisma.grupos.create({
+  async create(createGrupoDto: CreateGrupoDto) {
+    return await this.prisma.grupos.create({
       data:createGrupoDto,
     });
   }
 
-  findAll() {
-    return this.prisma.grupos.findMany();
+  async findAll() {
+    return await this.prisma.grupos.findMany();
   }
 
-  findOne(id: string) {
-    return this.prisma.grupos.findUnique({where:{id}});
+  async findOne(id: string) {
+    return await this.prisma.grupos.findUnique({where:{id}});
   }
 
-  update(id: string, updateGrupoDto: UpdateGrupoDto) {
-    return this.prisma.grupos.update({
+  async update(id: string, updateGrupoDto: UpdateGrupoDto) {
+    return await this.prisma.grupos.update({
       data:updateGrupoDto,
       where:{id}
     });
   }
 
-  remove(id: string) {
-    return this.prisma.grupos.delete({where:{id}});
+  async remove(id: string) {
+    return await this.prisma.grupos.delete({where:{id}});
   }
 }

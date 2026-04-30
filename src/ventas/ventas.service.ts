@@ -4,23 +4,23 @@ import { UpdateVentaDto } from './dto/update-venta.dto';
 
 @Injectable()
 export class VentasService {
-  create(createVentaDto: CreateVentaDto) {
-    return 'This action adds a new venta';
+  async create(createVentaDto: CreateVentaDto) {
+    return await 'This action adds a new venta';
   }
 
-  findAll() {
-    return `This action returns all ventas`;
+  async findAll() {
+    return await `This action returns all ventas`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} venta`;
+  async findOne(id: number) {
+    return await `This action returns a #${id} venta`;
   }
 
-  update(id: number, updateVentaDto: UpdateVentaDto) {
-    return `This action updates a #${id} venta`;
+  async update(id: number, updateVentaDto: UpdateVentaDto) {
+    return await `This action updates a #${id} venta`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} venta`;
+  async remove(id: number) {
+    return await `This action removes a #${id} venta`;
   }
 }

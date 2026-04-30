@@ -8,27 +8,27 @@ export class DetalleComprasController {
   constructor(private readonly detalleComprasService: DetalleComprasService) {}
 
   @Post()
-  create(@Body() createDetalleCompraDto: CreateDetalleCompraDto) {
-    return this.detalleComprasService.create(createDetalleCompraDto);
+  async create(@Body() createDetalleCompraDto: CreateDetalleCompraDto) {
+    return await this.detalleComprasService.create(createDetalleCompraDto);
   }
 
   @Get()
-  findAll() {
-    return this.detalleComprasService.findAll();
+  async findAll() {
+    return await this.detalleComprasService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.detalleComprasService.findOne(id);
+  async findOne(@Param('id') id: string) {
+    return await this.detalleComprasService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDetalleCompraDto: UpdateDetalleCompraDto) {
-    return this.detalleComprasService.update(id, updateDetalleCompraDto);
+  async update(@Param('id') id: string, @Body() updateDetalleCompraDto: UpdateDetalleCompraDto) {
+    return await this.detalleComprasService.update(id, updateDetalleCompraDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.detalleComprasService.remove(id);
+  async remove(@Param('id') id: string) {
+    return await this.detalleComprasService.remove(id);
   }
 }

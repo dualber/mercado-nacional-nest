@@ -6,23 +6,23 @@ import { PrismaService } from 'src/prisma/prisma.service';
 @Injectable()
 export class ClientesService {
   constructor(private prisma: PrismaService) {}
-  create(createClienteDto: CreateClienteDto) {
-    return this.prisma.clientes.create({data: createClienteDto});
+  async create(createClienteDto: CreateClienteDto) {
+    return await this.prisma.clientes.create({data: createClienteDto});
   }
 
-  findAll() {
-    return this.prisma.clientes.findMany();
+  async findAll() {
+    return await this.prisma.clientes.findMany();
   }
 
-  findOne(id: string) {
-    return this.prisma.clientes.findUnique({where: {id}});
+  async findOne(id: string) {
+    return await this.prisma.clientes.findUnique({where: {id}});
   }
 
-  update(id: string, updateClienteDto: UpdateClienteDto) {
-    return this.prisma.clientes.update({where: {id}, data: updateClienteDto});
+  async update(id: string, updateClienteDto: UpdateClienteDto) {
+    return await this.prisma.clientes.update({where: {id}, data: updateClienteDto});
   }
 
-  remove(id: string) {
-    return this.prisma.clientes.delete({where: {id}});
+  async remove(id: string) {
+    return await this.prisma.clientes.delete({where: {id}});
   }
 }

@@ -9,22 +9,22 @@ export class ComunalesController {
 
   @Post()
   async create(@Body() createComunaleDto: CreateComunaleDto) {
-    return this.comunalesService.create(createComunaleDto);
+    return await this.comunalesService.create(createComunaleDto);
   }
 
   @Get()
   async findAll() {
-    return this.comunalesService.findAll();
+    return await this.comunalesService.findAll();
   }
 
   @Get(':id')
   async findOne(@Param('id') id: string) {
-    return this.comunalesService.findOne(id);
+    return await this.comunalesService.findOne(id);
   }
 
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateComunaleDto: UpdateComunaleDto) {
-    return this.comunalesService.update(id, updateComunaleDto);
+    return await this.comunalesService.update(id, updateComunaleDto);
   }
 
   @Delete(':id')
@@ -36,7 +36,7 @@ export class ComunalesController {
       if (!buscar) {
         throw new NotFoundException('La comunale no existe');
       }else{
-        return this.comunalesService.remove(id);
+        return await this.comunalesService.remove(id);
       }
     }
   }

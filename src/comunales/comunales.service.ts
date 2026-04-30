@@ -7,22 +7,22 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class ComunalesService {
   constructor(private prisma: PrismaService) {}
   async create(createComunaleDto: CreateComunaleDto) {
-    return this.prisma.comunales.create({data: createComunaleDto});
+    return await this.prisma.comunales.create({data: createComunaleDto});
   }
 
   async findAll() {
-    return this.prisma.comunales.findMany();
+    return await this.prisma.comunales.findMany();
   } 
 
   async findOne(id: string) {
-    return this.prisma.comunales.findUnique({where: {id}});
+    return await this.prisma.comunales.findUnique({where: {id}});
   }
 
   async update(id: string, updateComunaleDto: UpdateComunaleDto) {
-    return this.prisma.comunales.update({where: {id}, data: updateComunaleDto});
+    return await this.prisma.comunales.update({where: {id}, data: updateComunaleDto});
   }
 
   async remove(id: string) {
-    return this.prisma.comunales.delete({where: {id}});
+    return await this.prisma.comunales.delete({where: {id}});
   }
 }
