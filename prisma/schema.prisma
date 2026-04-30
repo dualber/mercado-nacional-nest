@@ -48,6 +48,7 @@ model Compras {
   id_grupo       String
   grupo          Grupos           @relation(fields: [id_grupo], references: [id])
   detalles       DetalleCompras[]
+  @@unique([fecha,id_grupo])
 }
 
 model DetalleCompras {
@@ -63,7 +64,7 @@ model DetalleCompras {
 
 model Productos {
   id                String             @id @default(uuid())
-  nombre            String
+  nombre            String             @unique
   peso_kilo         Float
   detalle_compras   DetalleCompras[]
   detalle_recogidas DetalleRecogidas[]

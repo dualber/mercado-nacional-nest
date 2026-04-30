@@ -10,6 +10,6 @@ export class CreateGrupoDto {
   tipo_cuenta: string;
 
   @IsInt()
-  @Min(0)
+  @Min(1)
   numero_cuenta: number;
 }

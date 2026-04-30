@@ -31,4 +31,11 @@ export class ComprasController {
   remove(@Param('id') id: string) {
     return this.comprasService.remove(id);
   }
+
+  //prueba de las cantidades
+  @Get('test-total')
+  contarCantidades(){
+    return this.comprasService.contarCantidades();
+  }
+
 }

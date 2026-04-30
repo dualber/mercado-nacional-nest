@@ -51,7 +51,7 @@ export class PrismaClientExceptionFilter implements ExceptionFilter {
       }
     }
 
-    // 🔥 2. Manejo de errores HTTP de NestJS
+
     else if (exception instanceof HttpException) {
       status = exception.getStatus();
 
@@ -66,12 +66,11 @@ export class PrismaClientExceptionFilter implements ExceptionFilter {
       error = 'HTTP_EXCEPTION';
     }
 
-    // 🔥 3. Otros errores
+   
     else {
       console.error('Error no controlado:', exception);
     }
 
-    // 🎯 Respuesta estándar profesional
     response.status(status).json({
       statusCode: status,
       message,

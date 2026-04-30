@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateCompraDto } from './dto/create-compra.dto';
 import { UpdateCompraDto } from './dto/update-compra.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { CreateDetalleCompraDto } from 'src/detalle-compras/dto/create-detalle-compra.dto';
 
 @Injectable()
 export class ComprasService {
@@ -20,19 +21,24 @@ export class ComprasService {
     });
   }
 
-  async findAll() {
+async contarCantidades(){
+      const detalles = await this.prisma.detalleCompras.findMany();
+      return detalles;
+  }
+
+findAll() {
     return this.prisma.compras.findMany();
   }
 
-  async findOne(id: string) {
+findOne(id: string) {
     return this.prisma.compras.findUnique({where: {id}});
   }
 
-  async update(id: string, updateCompraDto: UpdateCompraDto) {
+ update(id: string, updateCompraDto: UpdateCompraDto) {
     return this.prisma.compras.update({ data: updateCompraDto,where: {id}});
   }
 
-  async remove(id: string) {
+remove(id: string) {
     return this.prisma.compras.delete({where:{id}});
   }
 }
