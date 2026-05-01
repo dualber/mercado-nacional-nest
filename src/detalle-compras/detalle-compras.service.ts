@@ -28,7 +28,7 @@ export class DetalleComprasService {
     });
 
     await this.actualizarCantidadTotal(createDetalleCompraDto.id_compra);
-
+    await this.actualizarPagoTotal(createDetalleCompraDto.id_compra);
     return crear;
     
   }
@@ -47,6 +47,18 @@ export class DetalleComprasService {
      })
   }
 
+  async actualizarPagoTotal(idCompra: string){
+    const detalles = await this.prisma.detalleCompras.findMany({
+      where:{id_compra:idCompra}
+    });
+    const total = detalles.reduce((suma, d) => suma + Number.parseFloat(d.subtotal.toString()), 0);
+    console.log(total);
+    return this.prisma.compras.update({
+      where:{id:idCompra},
+      data:{pago_total: total}
+    })
+  }
+
   async findAll() {
     return await this.prisma.detalleCompras.findMany();
   }
@@ -62,7 +74,7 @@ export class DetalleComprasService {
       where:{id}});
     
       await this.actualizarCantidadTotal(updateDetalleCompraDto.id_compra);
-
+      await this.actualizarPagoTotal(updateDetalleCompraDto.id_compra);
       return actualizar;
 
 
@@ -74,6 +86,7 @@ export class DetalleComprasService {
     });
 
     await this.actualizarCantidadTotal(eliminar.id_compra)
+    await this.actualizarPagoTotal(eliminar.id_compra)
     return eliminar;
 
   }

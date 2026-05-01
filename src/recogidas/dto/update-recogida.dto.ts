@@ -7,26 +7,6 @@ export class UpdateRecogidaDto {
   fecha?: string;
 
   @IsOptional()
-  @IsInt()
-  @Min(0)
-  anio?: number;
-
-  @IsOptional()
-  @IsInt()
-  @Min(1)
-  mes?: number;
-
-  @IsOptional()
-  @IsInt()
-  @Min(1)
-  semana?: number;
-
-  @IsOptional()
-  @IsInt()
-  @Min(1)
-  dia?: number;
-
-  @IsOptional()
   @IsString()
   placa_vehiculo?: string;
 

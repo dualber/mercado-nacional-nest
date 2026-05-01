@@ -19,16 +19,16 @@ export class DetalleRecogidasController {
 
   @Get(':id')
   async findOne(@Param('id') id: string) {
-    return await this.detalleRecogidasService.findOne(+id);
+    return await this.detalleRecogidasService.findOne(id);
   }
 
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateDetalleRecogidaDto: UpdateDetalleRecogidaDto) {
-    return await this.detalleRecogidasService.update(+id, updateDetalleRecogidaDto);
+    return await this.detalleRecogidasService.update(id, updateDetalleRecogidaDto);
   }
 
   @Delete(':id')
   async remove(@Param('id') id: string) {
-    return await this.detalleRecogidasService.remove(+id);
+    return await this.detalleRecogidasService.remove(id);
   }
 }

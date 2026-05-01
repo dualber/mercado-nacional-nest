@@ -17,6 +17,7 @@ export class ComprasService {
           },
         },
         cantidad_total: 0, 
+        pago_total: 0.0,
       },
     });
   }

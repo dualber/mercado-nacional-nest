@@ -5,10 +5,10 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class FincasService {
-  constructor(private prisma: PrismaService){}
+  constructor(private prisma: PrismaService) {}
   async create(createFincaDto: CreateFincaDto) {
     return await this.prisma.fincas.create({
-      data:createFincaDto,
+      data: createFincaDto,
     });
   }
 
@@ -17,17 +17,17 @@ export class FincasService {
   }
 
   async findOne(id: string) {
-    return await this.prisma.fincas.findUnique({where:{id}});
+    return await this.prisma.fincas.findUnique({ where: { id } });
   }
 
   async update(id: string, updateFincaDto: UpdateFincaDto) {
     return await this.prisma.fincas.update({
-      data:updateFincaDto,
-      where:{id}
+      data: updateFincaDto,
+      where: { id },
     });
   }
 
   async remove(id: string) {
-    return await this.prisma.fincas.delete({where:{id}});
+    return await this.prisma.fincas.delete({ where: { id } });
   }
 }

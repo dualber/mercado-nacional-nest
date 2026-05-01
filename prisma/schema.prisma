@@ -15,7 +15,7 @@ datasource db {
 
 model Comunales {
   id        String   @id @default(uuid())
-  name      String
+  nombre    String   @unique
   fincas    Fincas[]
 }
 
@@ -35,16 +35,21 @@ model Fincas {
   ibm          String
   nombre       String
   id_grupo     String
-  id_comunales String
+  id_comunal   String
   grupo        Grupos    @relation(fields: [id_grupo], references: [id])
-  comunal    Comunales @relation(fields: [id_comunales], references: [id])
+  comunal    Comunales @relation(fields: [id_comunal], references: [id])
   recogidas    DetalleRecogidas[]
+
+  @@unique ([nombre,id_grupo])
+  @@unique ([id_grupo,ibm])
+
 }
 
 model Compras {
   id             String           @id @default(uuid())
   fecha          DateTime
   cantidad_total Int
+  pago_total     Decimal @db.Decimal(10, 2)
   id_grupo       String
   grupo          Grupos           @relation(fields: [id_grupo], references: [id])
   detalles       DetalleCompras[]
@@ -86,10 +91,6 @@ model DetalleRecogidas {
 model Recogidas {
   id             String             @id @default(uuid())
   fecha          DateTime
-  anio           Int
-  mes            Int
-  semana         Int
-  dia            Int
   placa_vehiculo String
   cantidad_total Float
   id_persona     String
@@ -141,7 +142,7 @@ model PersonaRoles {
 
 model Roles {
   id_rol   String        @id @default(uuid())
-  nombre   String
+  nombre   String        @unique
   personas PersonaRoles[]
 }
 

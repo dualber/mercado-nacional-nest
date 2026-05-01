@@ -13,5 +13,5 @@ export class CreateFincaDto {
   id_grupo: string;
 
   @IsUUID()
-  id_comunales: string;
+  id_comunal: string;
 }

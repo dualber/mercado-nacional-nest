@@ -5,5 +5,5 @@ export class UpdateComunaleDto {
   @IsOptional()
   @IsString()
   @IsNotEmpty()
-  name?: string;
+  nombre?: string;
 }

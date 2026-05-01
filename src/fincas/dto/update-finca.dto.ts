@@ -18,5 +18,5 @@ export class UpdateFincaDto {
 
   @IsOptional()
   @IsUUID()
-  id_comunales?: string;
+  id_comunal?: string;
 }

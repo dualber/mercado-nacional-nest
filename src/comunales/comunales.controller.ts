@@ -28,16 +28,8 @@ export class ComunalesController {
   }
 
   @Delete(':id')
-  async   remove(@Param('id') id: string) {
-    if (!id) {
-      throw new BadRequestException('El ID es requerido');
-    }else{
-      const buscar = this.comunalesService.findOne(id);
-      if (!buscar) {
-        throw new NotFoundException('La comunale no existe');
-      }else{
+  async remove(@Param('id') id: string) {
         return await this.comunalesService.remove(id);
       }
-    }
   }
-}
+
