@@ -3,6 +3,7 @@ import { CreateCompraDto } from './dto/create-compra.dto';
 import { UpdateCompraDto } from './dto/update-compra.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateDetalleCompraDto } from 'src/detalle-compras/dto/create-detalle-compra.dto';
+import { Producto } from 'src/productos/entities/producto.entity';
 
 @Injectable()
 export class ComprasService {
@@ -26,7 +27,12 @@ export class ComprasService {
   async findAll() {
     const compras = await this.prisma.compras.findMany({
       include: {
-        detalles: true,
+        detalles:{
+          include: {
+            producto:true,
+          }
+        },
+        grupo: true,
       },
     });
 
@@ -42,9 +48,29 @@ export class ComprasService {
         (acc, detalle) => acc + Number.parseFloat(detalle.subtotal.toString()),
         0,
       ),
-      detalles: compra.detalles,
+      grupo: compra.grupo.nombre,
+      detalles: compra.detalles.map((detalle) => ({
+        producto: detalle.producto.nombre,
+        cantidad: detalle.cantidad,
+        subtotal: detalle.subtotal,
+        precio: detalle.precio,
+      }))
+
+
+
+
     }));
   }
+
+
+
+
+
+
+
+
+
+
 
   async findOne(id: string) {
     return await this.prisma.compras.findUnique({ where: { id } });

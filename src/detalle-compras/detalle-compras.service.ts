@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateDetalleCompraDto } from './dto/create-detalle-compra.dto';
 import { UpdateDetalleCompraDto } from './dto/update-detalle-compra.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { Producto } from 'src/productos/entities/producto.entity';
 
 
 @Injectable()
@@ -60,7 +61,20 @@ export class DetalleComprasService {
   }
 
   async findAll() {
-    return await this.prisma.detalleCompras.findMany();
+      const detalles = await this.prisma.detalleCompras.findMany({
+      include:{
+        producto: true,
+        compra:true,
+      }
+    });
+
+    return detalles.map((detalle) =>({
+      id:detalle.id,
+      producto:detalle.producto.nombre,
+      cantidad:detalle.cantidad,
+      precio:detalle.precio,
+      subtotal:detalle.subtotal,
+    }))
   }
 
   async findOne(id: string) {

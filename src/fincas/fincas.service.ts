@@ -13,7 +13,23 @@ export class FincasService {
   }
 
   async findAll() {
-    return await this.prisma.fincas.findMany();
+    const fincas = await this.prisma.fincas.findMany({
+      include: {
+        grupo: true,
+        comunal: true,
+      },
+    });
+
+    return fincas.map((finca) => ({
+      id: finca.id,
+      ibm: finca.ibm,
+      nombre: finca.nombre,
+      contacto: finca.contacto,
+      grupo: finca.grupo.nombre,
+      comunal: finca.comunal.nombre,
+      zona: finca.comunal.zona,
+    }));
+
   }
 
   async findOne(id: string) {

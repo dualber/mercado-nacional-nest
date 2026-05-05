@@ -3,17 +3,17 @@ import { IsEmail, IsInt, IsNotEmpty, IsOptional, IsString, Length, Min, MinLengt
 export class CreateGrupoDto {
   @IsString()
   @IsOptional()
-  @Length(8, 15)
+  @Length(8, 15, { message: 'El NIT debe tener entre 8 y 15 caracteres' })
   @Matches(/^[0-9]+$/, { message: 'El NIT solo debe contener números' })
   nit: string;
 
   @IsString()
   @IsNotEmpty()
-  @MinLength(3)
+  @MinLength(3, { message: 'El nombre debe tener al menos 3 caracteres' })
   nombre: string;
 
   @IsString()
-  @MinLength(10)
+  @MinLength(10, { message: 'El contacto debe tener al menos 10 caracteres' })
   @Matches(/^[0-9]+$/, { message: 'El contacto solo debe contener números' })
   contacto: string;
 
