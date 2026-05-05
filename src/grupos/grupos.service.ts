@@ -8,7 +8,7 @@ export class GruposService {
   constructor(private prisma:PrismaService){}
   async create(createGrupoDto: CreateGrupoDto) {
     return await this.prisma.grupos.create({
-      data:createGrupoDto,
+      data: createGrupoDto,
     });
   }
 

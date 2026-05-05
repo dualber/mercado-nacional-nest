@@ -1,26 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { CreatePersonaRoleDto } from './dto/create-persona-role.dto';
 import { UpdatePersonaRoleDto } from './dto/update-persona-role.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class PersonaRolesService {
+  constructor(private prisma: PrismaService){}
   async create(createPersonaRoleDto: CreatePersonaRoleDto) {
-    return await 'This action adds a new personaRole';
+    return await this.prisma.personaRoles.create({ data: createPersonaRoleDto });
   }
 
   async findAll() {
-    return await `This action returns all personaRoles`;
+    return await this.prisma.personaRoles.findMany();
   }
 
-  async findOne(id: number) {
-    return await `This action returns a #${id} personaRole`;
+  async findOne(id: string) {
+    return await this.prisma.personaRoles.findUnique({ where: { id_persona_id_rol: { id_persona: id, id_rol: id } } });
   }
 
-  async update(id: number, updatePersonaRoleDto: UpdatePersonaRoleDto) {
-    return await `This action updates a #${id} personaRole`;
+  async update(id: string, updatePersonaRoleDto: UpdatePersonaRoleDto) {
+    return await this.prisma.personaRoles.update({ data: updatePersonaRoleDto, where: { id_persona_id_rol: { id_persona: id, id_rol: id } } });
   }
 
-  async remove(id: number) {
-    return await `This action removes a #${id} personaRole`;
+  async remove(id: string) {
+    return await this.prisma.personaRoles.delete({ where: { id_persona_id_rol: { id_persona: id, id_rol: id } } });
   }
 }

@@ -19,16 +19,16 @@ export class PersonaRolesController {
 
   @Get(':id')
   async findOne(@Param('id') id: string) {
-    return await this.personaRolesService.findOne(+id);
+    return await this.personaRolesService.findOne(id);
   }
 
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updatePersonaRoleDto: UpdatePersonaRoleDto) {
-    return await this.personaRolesService.update(+id, updatePersonaRoleDto);
+    return await this.personaRolesService.update(id, updatePersonaRoleDto);
   }
 
   @Delete(':id')
   async remove(@Param('id') id: string) {
-    return await this.personaRolesService.remove(+id);
+    return await this.personaRolesService.remove(id);
   }
 }

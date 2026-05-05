@@ -16,21 +16,34 @@ export class ComprasService {
             id: createCompraDto.id_grupo,
           },
         },
-        cantidad_total: 0, 
+        cantidad_total: 0,
         pago_total: 0.0,
       },
     });
   }
 
-  async contarCantidades() {
-    const detalles = await this.prisma.detalleCompras.findMany();
-    const cantidad_total = detalles.reduce((acc,d) => acc + d.cantidad, 0)
-    console.log(cantidad_total)
-    return Number(cantidad_total);
-  }
-
+  //llamamos a todas las compras con sus detalles
   async findAll() {
-    return await this.prisma.compras.findMany();
+    const compras = await this.prisma.compras.findMany({
+      include: {
+        detalles: true,
+      },
+    });
+
+    //construir el payload para la respuesta
+    return compras.map((compra) => ({
+      id: compra.id,
+      fecha: compra.fecha,
+      cantidad_total: compra.detalles.reduce(
+        (acc, detalle) => acc + detalle.cantidad,
+        0,
+      ),
+      pago_total: compra.detalles.reduce(
+        (acc, detalle) => acc + Number.parseFloat(detalle.subtotal.toString()),
+        0,
+      ),
+      detalles: compra.detalles,
+    }));
   }
 
   async findOne(id: string) {
@@ -38,7 +51,10 @@ export class ComprasService {
   }
 
   async update(id: string, updateCompraDto: UpdateCompraDto) {
-    return await this.prisma.compras.update({ data: updateCompraDto, where: { id } });
+    return await this.prisma.compras.update({
+      data: updateCompraDto,
+      where: { id },
+    });
   }
 
   async remove(id: string) {

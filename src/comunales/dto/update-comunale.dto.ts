@@ -6,4 +6,8 @@ export class UpdateComunaleDto {
   @IsString()
   @IsNotEmpty()
   nombre?: string;
+
+  @IsString()
+  @IsNotEmpty()
+  zona?: string;
 }

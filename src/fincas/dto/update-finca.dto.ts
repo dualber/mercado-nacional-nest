@@ -12,6 +12,10 @@ export class UpdateFincaDto {
   @IsNotEmpty()
   nombre?: string;
 
+  @IsString()
+  @IsOptional()
+  contacto?:string;
+
   @IsOptional()
   @IsUUID()
   id_grupo?: string;

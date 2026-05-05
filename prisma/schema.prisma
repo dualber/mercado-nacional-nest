@@ -16,6 +16,7 @@ datasource db {
 model Comunales {
   id        String   @id @default(uuid())
   nombre    String   @unique
+  zona      String
   fincas    Fincas[]
 }
 
@@ -23,17 +24,22 @@ model Comunales {
 
 model Grupos {
   id      String    @id @default(uuid())
-  nombre  String
+  nit     String  @unique
+  nombre  String  
+  contacto String?
+  correo String?   @unique
   tipo_cuenta String
   numero_cuenta Int
   fincas  Fincas[]
   compras Compras[]
+  @@unique([nit,nombre])
 }
 
 model Fincas {
   id           String    @id @default(uuid())
   ibm          String
   nombre       String
+  contacto     String?
   id_grupo     String
   id_comunal   String
   grupo        Grupos    @relation(fields: [id_grupo], references: [id])
@@ -98,6 +104,7 @@ model Recogidas {
   vehiculo       Vehiculos          @relation(fields: [placa_vehiculo], references: [placa])
   detalle        DetalleRecogidas[]
   coteros        RecogidaCoteros[]
+  
 }
 
 model RecogidaCoteros {
@@ -115,7 +122,7 @@ model Personas {
   nombres          String
   apellidos        String
   contacto         String
-  correo           String           @unique
+  correo           String?           @unique
   usuarios         Usuarios[]
   roles            PersonaRoles[]
   recogidas        Recogidas[]
@@ -180,6 +187,7 @@ model Clientes {
   nombres       String
   apellidos     String
   contacto      String
+  correo        String?
   tipo_cuenta   String
   numero_cuenta String  
   ciudad        String

@@ -4,4 +4,10 @@ export class CreateComunaleDto {
   @IsString()
   @IsNotEmpty()
   nombre: string;
+
+  @IsString()
+  @IsNotEmpty()
+  zona: string;
+  
+
 }

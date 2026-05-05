@@ -17,13 +17,6 @@ export class ComprasController {
     return await this.comprasService.findAll();
   }
 
-  //prueba de las cantidades
-  @Get('test-total')
- async contarCantidades(){
-    return  this.comprasService.contarCantidades();
-  }
-  
-
   @Get(':id')
   async findOne(@Param('id') id: string) {
     return await this.comprasService.findOne(id);

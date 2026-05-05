@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString, IsUUID } from 'class-validator';
 
 export class CreateFincaDto {
   @IsString()
@@ -8,6 +8,10 @@ export class CreateFincaDto {
   @IsString()
   @IsNotEmpty()
   nombre: string;
+
+  @IsString()
+  @IsOptional()
+  contacto:string;
 
   @IsUUID()
   id_grupo: string;
