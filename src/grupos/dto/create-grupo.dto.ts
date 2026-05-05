@@ -1,30 +1,33 @@
-import { IsEmail, IsInt, IsNotEmpty, IsOptional, IsString, MIN, Min } from 'class-validator';
+import { IsEmail, IsInt, IsNotEmpty, IsOptional, IsString, Length, Min, MinLength, Matches } from 'class-validator';
 
 export class CreateGrupoDto {
   @IsString()
   @IsOptional()
-  @Min(8)
+  @Length(8, 15)
+  @Matches(/^[0-9]+$/, { message: 'El NIT solo debe contener números' })
   nit: string;
 
   @IsString()
   @IsNotEmpty()
+  @MinLength(3)
   nombre: string;
 
   @IsString()
-  @IsNotEmpty()
-  @Min(10)
-  contacto:string;
+  @MinLength(10)
+  @Matches(/^[0-9]+$/, { message: 'El contacto solo debe contener números' })
+  contacto: string;
 
   @IsString()
   @IsEmail()
   @IsOptional()
-  correo:string;
+  correo: string;
 
   @IsString()
   @IsNotEmpty()
   tipo_cuenta: string;
 
-  @IsInt()
-  @Min(10)
-  numero_cuenta: number;
+  @IsString()
+  @MinLength(10)
+  @Matches(/^[0-9]+$/, { message: 'El numero de cuenta solo debe contener números' })
+  numero_cuenta: string;
 }

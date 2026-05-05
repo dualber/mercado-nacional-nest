@@ -26,10 +26,10 @@ model Grupos {
   id      String    @id @default(uuid())
   nit     String  @unique
   nombre  String  
-  contacto String?
+  contacto String? 
   correo String?   @unique
   tipo_cuenta String
-  numero_cuenta Int
+  numero_cuenta String
   fincas  Fincas[]
   compras Compras[]
   @@unique([nit,nombre])
@@ -39,7 +39,7 @@ model Fincas {
   id           String    @id @default(uuid())
   ibm          String
   nombre       String
-  contacto     String?
+  contacto     String
   id_grupo     String
   id_comunal   String
   grupo        Grupos    @relation(fields: [id_grupo], references: [id])
@@ -121,7 +121,7 @@ model Personas {
   cedula           String           @unique
   nombres          String
   apellidos        String
-  contacto         String
+  contacto         String?
   correo           String?           @unique
   usuarios         Usuarios[]
   roles            PersonaRoles[]
@@ -186,7 +186,7 @@ model Clientes {
   cedula        String   @unique
   nombres       String
   apellidos     String
-  contacto      String
+  contacto      String?
   correo        String?
   tipo_cuenta   String
   numero_cuenta String  

@@ -1,5 +1,5 @@
 import { CreatePersonaDto } from './create-persona.dto';
-import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsOptional, IsString, Matches } from 'class-validator';
 
 export class UpdatePersonaDto {
   @IsOptional()
@@ -19,7 +19,7 @@ export class UpdatePersonaDto {
 
   @IsOptional()
   @IsString()
-  @IsNotEmpty()
+  @Matches(/^[0-9]+$/, { message: 'El contacto solo debe contener números' })
   contacto?: string;
 
   @IsOptional()

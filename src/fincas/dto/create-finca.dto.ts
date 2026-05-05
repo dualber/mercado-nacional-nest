@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsOptional, IsString, IsUUID } from 'class-validator';
+import { IsByteLength, IsNotEmpty, IsOptional, IsString, IsUUID, Matches,MinLength } from 'class-validator';
 
 export class CreateFincaDto {
   @IsString()
@@ -11,6 +11,8 @@ export class CreateFincaDto {
 
   @IsString()
   @IsOptional()
+  @MinLength(10, { message: 'El contacto debe tener al menos 10 caracteres' })
+  @Matches(/^[0-9]+$/, { message: 'El contacto solo debe contener números' })
   contacto:string;
 
   @IsUUID()

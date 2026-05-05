@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsString, IsOptional } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, IsOptional, Matches } from 'class-validator';
 
 export class CreatePersonaDto {
   @IsString()
@@ -15,6 +15,7 @@ export class CreatePersonaDto {
 
   @IsString()
   @IsNotEmpty()
+  @Matches(/^[0-9]+$/, { message: 'El contacto solo debe contener números' })
   contacto: string;
 
   @IsEmail()
