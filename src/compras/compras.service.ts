@@ -27,10 +27,10 @@ export class ComprasService {
   async findAll() {
     const compras = await this.prisma.compras.findMany({
       include: {
-        detalles:{
+        detalles: {
           include: {
-            producto:true,
-          }
+            producto: true,
+          },
         },
         grupo: true,
       },
@@ -54,23 +54,9 @@ export class ComprasService {
         cantidad: detalle.cantidad,
         subtotal: detalle.subtotal,
         precio: detalle.precio,
-      }))
-
-
-
-
+      })),
     }));
   }
-
-
-
-
-
-
-
-
-
-
 
   async findOne(id: string) {
     return await this.prisma.compras.findUnique({ where: { id } });

@@ -17,6 +17,9 @@ export class UpdateVehiculoDto {
   @IsNotEmpty({ message: 'La descripción no puede estar vacía' })
   descipcion?: string;
 
+  @IsString()
+  id_persona:string;
+
   @IsOptional()
   @IsNumber({}, { message: 'La capacidad debe ser un número' })
   @Min(0, { message: 'La capacidad debe ser mayor o igual a 0' })

@@ -17,18 +17,18 @@ export class VehiculosController {
     return await this.vehiculosService.findAll();
   }
 
-  @Get(':id')
-  async findOne(@Param('id') id: string) {
-    return await this.vehiculosService.findOne(+id);
+  @Get(':placa')
+  async findOne(@Param('placa') placa: string) {
+    return await this.vehiculosService.findOne(placa);
   }
 
-  @Patch(':id')
-  async update(@Param('id') id: string, @Body() updateVehiculoDto: UpdateVehiculoDto) {
-    return await this.vehiculosService.update(+id, updateVehiculoDto);
+  @Patch(':placa')
+  async update(@Param('placa') placa: string, @Body() updateVehiculoDto: UpdateVehiculoDto) {
+    return await this.vehiculosService.update(placa, updateVehiculoDto);
   }
 
-  @Delete(':id')
-  async remove(@Param('id') id: string) {
-    return await this.vehiculosService.remove(+id);
+  @Delete(':placa')
+  async remove(@Param('placa') placa: string) {
+    return await this.vehiculosService.remove(placa);
   }
 }

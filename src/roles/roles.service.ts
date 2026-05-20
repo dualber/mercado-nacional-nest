@@ -11,7 +11,26 @@ export class RolesService {
   }
 
   async findAll() {
-    return await this.prisma.roles.findMany();
+      const roles = await this.prisma.roles.findMany({
+      include:{
+        personas:{
+          include:{
+            persona:true,
+          }
+        }
+      }
+    });
+
+    return roles.map((roles) => ({
+      id:roles.id_rol,
+      nombre:roles.nombre,
+      personas:roles.personas.map((persona) => ({
+        nombre:persona.persona.nombres,
+        apellido:persona.persona.apellidos
+      }))
+    }))
+
+
   }
 
   async findOne(id: string) {

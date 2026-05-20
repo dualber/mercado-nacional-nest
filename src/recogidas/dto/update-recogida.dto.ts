@@ -15,7 +15,4 @@ export class UpdateRecogidaDto {
   @Min(0, { message: 'La cantidad total debe ser mayor o igual a 0' })
   cantidad_total?: number;
 
-  @IsOptional()
-  @IsUUID('4', { message: 'El id de la persona debe ser un UUID válido' })
-  id_persona?: string;
 }

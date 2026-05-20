@@ -1,24 +1,25 @@
 import { CreatePersonaDto } from './create-persona.dto';
-import { IsEmail, IsNotEmpty, IsOptional, IsString, Matches } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsOptional, IsString, Matches, MinLength } from 'class-validator';
 
 export class UpdatePersonaDto {
   @IsOptional()
-  @IsString({ message: 'La cédula debe ser una cadena de texto' })
-  @IsNotEmpty({ message: 'La cédula no puede estar vacía' })
+  @MinLength(8,{message:'la cedula a ingresar debe tener minimo 8 digitos'})
+  @Matches(/^[0-9]+$/, { message: 'la cedula solo debe contener números' })
   cedula?: string;
 
   @IsOptional()
-  @IsString({ message: 'Los nombres deben ser una cadena de texto' })
-  @IsNotEmpty({ message: 'Los nombres no pueden estar vacíos' })
+  @IsString()
+  @IsNotEmpty({ message: 'Los nombres son obligatorios' })
+  @Matches(/^[aA-zZ]+$/, { message: 'El nombre solo debe contener letras' })
   nombres?: string;
 
   @IsOptional()
-  @IsString({ message: 'Los apellidos deben ser una cadena de texto' })
-  @IsNotEmpty({ message: 'Los apellidos no pueden estar vacíos' })
+  @IsNotEmpty({ message: 'Los apellidos son obligatorios' })
+  @Matches(/^[aA-zZ]+$/, { message: 'El apellido solo debe contener letras' })
   apellidos?: string;
 
   @IsOptional()
-  @IsString({ message: 'El contacto debe ser una cadena de texto' })
+  @IsString()
   @Matches(/^[0-9]+$/, { message: 'El contacto solo debe contener números' })
   contacto?: string;
 

@@ -99,8 +99,6 @@ model Recogidas {
   fecha          DateTime
   placa_vehiculo String
   cantidad_total Float
-  id_persona     String
-  persona        Personas           @relation(fields: [id_persona], references: [id])
   vehiculo       Vehiculos          @relation(fields: [placa_vehiculo], references: [placa])
   detalle        DetalleRecogidas[]
   coteros        RecogidaCoteros[]
@@ -125,8 +123,9 @@ model Personas {
   correo           String?           @unique
   usuarios         Usuarios[]
   roles            PersonaRoles[]
-  recogidas        Recogidas[]
   recogida_coteros RecogidaCoteros[]
+  vehiculos        Vehiculos[]
+
 }
 
 model Usuarios {
@@ -156,8 +155,10 @@ model Roles {
 model Vehiculos {
   placa       String      @id
   marca       String
-  descipcion  String
+  descripcion  String?
   capacidad   Float
+  id_persona  String
+  persona     Personas    @relation(fields: [id_persona], references: [id])
   recogidas   Recogidas[]
 }
 

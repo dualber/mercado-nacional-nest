@@ -11,11 +11,6 @@ export class RecogidasService {
       data: {
         fecha: createRecogidaDto.fecha,
         cantidad_total: 0,
-        persona: {
-          connect: {
-            id: createRecogidaDto.id_persona,
-          },
-        },
         vehiculo: {
           connect: {
             placa: createRecogidaDto.placa_vehiculo,
