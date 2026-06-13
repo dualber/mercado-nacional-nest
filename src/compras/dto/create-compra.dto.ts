@@ -1,4 +1,4 @@
-import { IsDateString, IsNumber, IsString, IsUUID, Min } from 'class-validator';
+import { IsDateString, IsString, IsUUID } from 'class-validator';
 
 export class CreateCompraDto {
   @IsDateString({}, { message: 'La fecha debe tener un formato de fecha válido' })

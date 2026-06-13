@@ -19,16 +19,16 @@ export class RecogidaCoterosController {
 
   @Get(':id')
   async findOne(@Param('id') id: string) {
-    return await this.recogidaCoterosService.findOne(+id);
+    return await this.recogidaCoterosService.findOne(id);
   }
 
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateRecogidaCoteroDto: UpdateRecogidaCoteroDto) {
-    return await this.recogidaCoterosService.update(+id, updateRecogidaCoteroDto);
+    return await this.recogidaCoterosService.update(id, updateRecogidaCoteroDto);
   }
 
   @Delete(':id')
   async remove(@Param('id') id: string) {
-    return await this.recogidaCoterosService.remove(+id);
+    return await this.recogidaCoterosService.remove(id);
   }
 }

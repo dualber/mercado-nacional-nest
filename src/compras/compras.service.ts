@@ -2,8 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateCompraDto } from './dto/create-compra.dto';
 import { UpdateCompraDto } from './dto/update-compra.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateDetalleCompraDto } from 'src/detalle-compras/dto/create-detalle-compra.dto';
-import { Producto } from 'src/productos/entities/producto.entity';
+
 
 @Injectable()
 export class ComprasService {

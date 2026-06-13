@@ -106,12 +106,13 @@ model Recogidas {
 }
 
 model RecogidaCoteros {
+  id          String    @id @default(uuid())
   id_recogida String
   id_persona  String
   recogida    Recogidas @relation(fields: [id_recogida], references: [id])
   persona     Personas  @relation(fields: [id_persona], references: [id])
 
-  @@id([id_recogida, id_persona])
+  @@unique([id_recogida, id_persona])
 }
 
 model Personas {

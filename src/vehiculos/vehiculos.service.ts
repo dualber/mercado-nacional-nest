@@ -62,7 +62,7 @@ export class VehiculosService {
       },
     });
 
-    return vehiculos.map((vehiculo, i) => ({
+    return vehiculos.map((vehiculo) => ({
       placa: vehiculo.placa,
       marca: vehiculo.marca,
       descripcion: vehiculo.descripcion,

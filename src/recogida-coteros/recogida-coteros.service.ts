@@ -1,26 +1,42 @@
 import { Injectable } from '@nestjs/common';
 import { CreateRecogidaCoteroDto } from './dto/create-recogida-cotero.dto';
 import { UpdateRecogidaCoteroDto } from './dto/update-recogida-cotero.dto';
-
+import { PrismaService } from 'src/prisma/prisma.service';
 @Injectable()
 export class RecogidaCoterosService {
+  constructor(private prisma: PrismaService) {}
   async create(createRecogidaCoteroDto: CreateRecogidaCoteroDto) {
-    return await 'This action adds a new recogidaCotero';
+    return await this.prisma.recogidaCoteros.create({
+      data: createRecogidaCoteroDto,
+    });
   }
 
   async findAll() {
-    return await `This action returns all recogidaCoteros`;
+    const recogidaCotero = await this.prisma.recogidaCoteros.findMany({
+      include:{
+        persona:true,
+      }
+    });
+    
+    //aplicamos
+    return recogidaCotero.map((rCotero)=>({
+      id_recogida:rCotero.id_recogida,
+      persona:rCotero.persona.nombres + " " + rCotero.persona.apellidos
+    }))
   }
 
-  async findOne(id: number) {
-    return await `This action returns a #${id} recogidaCotero`;
+  async findOne(id: string) {
+    return await this.prisma.recogidaCoteros.findUnique({ where: { id } });
   }
 
-  async update(id: number, updateRecogidaCoteroDto: UpdateRecogidaCoteroDto) {
-    return await `This action updates a #${id} recogidaCotero`;
+  async update(id: string, updateRecogidaCoteroDto: UpdateRecogidaCoteroDto) {
+    return await this.prisma.recogidaCoteros.update({
+      data: updateRecogidaCoteroDto,
+      where: { id },
+    });
   }
 
-  async remove(id: number) {
-    return await `This action removes a #${id} recogidaCotero`;
+  async remove(id: string) {
+    return await this.prisma.recogidaCoteros.delete({ where: { id } });
   }
 }
