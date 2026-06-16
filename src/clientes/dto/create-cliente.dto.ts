@@ -1,9 +1,9 @@
-import { IsNotEmpty, IsString, IsInt, Matches, MinLength } from 'class-validator';
+import { IsNotEmpty, IsString, IsInt, Matches, MinLength, isEmail, IsEmail, IsOptional } from 'class-validator';
 
 export class CreateClienteDto {
   @IsString()
   @IsNotEmpty()
-  @MinLength(10, { message: 'La cédula debe tener al menos 10 caracteres' })
+  @MinLength(8, { message: 'La cédula debe tener al menos 8 caracteres' })
   @Matches(/^[0-9]+$/, { message: 'La cédula solo debe contener números' })
   cedula: string;
 
@@ -23,6 +23,11 @@ export class CreateClienteDto {
   @MinLength(10, { message: 'El contacto debe tener al menos 10 caracteres' })
   @Matches(/^[0-9]+$/, { message: 'El contacto solo debe contener números' })
   contacto: string;
+
+  @IsString()
+  @IsEmail({},{message:'el formato de correo es ivalido, ingresa un correo valido'})
+  @IsOptional()
+  correo:string;
 
   @IsString()
   @IsNotEmpty()
