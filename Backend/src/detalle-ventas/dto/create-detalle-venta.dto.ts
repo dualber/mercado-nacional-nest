@@ -9,10 +9,6 @@ export class CreateDetalleVentaDto {
   @Min(0, { message: 'El precio debe ser mayor o igual a 0' })
   precio: number;
 
-  @IsNumber({ maxDecimalPlaces: 2 }, { message: 'El subtotal debe ser un número con máximo 2 decimales' })
-  @Min(0, { message: 'El subtotal debe ser mayor o igual a 0' })
-  subtotal: number;
-
   @IsUUID('4', { message: 'El id del producto debe ser un UUID válido' })
   id_producto: string;
 

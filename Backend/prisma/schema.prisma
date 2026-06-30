@@ -172,6 +172,7 @@ model DetalleVentas {
   id_venta    String
   producto    Productos @relation(fields: [id_producto], references: [id])
   venta       Ventas    @relation(fields: [id_venta], references: [id])
+  @@unique([id_producto,id_venta])
 }
 
 model Ventas {

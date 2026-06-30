@@ -12,7 +12,7 @@ export class ComprasService {
       data: {
         fecha: new Date(createCompraDto.fecha),
         grupo: {
-          connect: {
+        connect: {
             id: createCompraDto.id_grupo,
           },
         },
@@ -43,6 +43,7 @@ export class ComprasService {
         (acc, detalle) => acc + detalle.cantidad,
         0,
       ),
+
       pago_total: compra.detalles.reduce(
         (acc, detalle) => acc + Number.parseFloat(detalle.subtotal.toString()),
         0,
@@ -55,6 +56,7 @@ export class ComprasService {
         precio: detalle.precio,
       })),
     }));
+    
   }
 
   async findOne(id: string) {

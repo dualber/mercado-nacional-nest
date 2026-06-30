@@ -10,7 +10,9 @@ async function bootstrap() {
   app.useGlobalFilters(new PrismaClientExceptionFilter());
   //app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter));
   app.useGlobalPipes(new ValidationPipe());
-  app.enableCors({ origin: '*' });
+
+  app.enableCors();
+
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();

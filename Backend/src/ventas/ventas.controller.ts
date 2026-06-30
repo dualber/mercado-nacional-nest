@@ -19,16 +19,16 @@ export class VentasController {
 
   @Get(':id')
   async findOne(@Param('id') id: string) {
-    return await this.ventasService.findOne(+id);
+    return await this.ventasService.findOne(id);
   }
 
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateVentaDto: UpdateVentaDto) {
-    return await this.ventasService.update(+id, updateVentaDto);
+    return await this.ventasService.update(id, updateVentaDto);
   }
 
   @Delete(':id')
   async remove(@Param('id') id: string) {
-    return await this.ventasService.remove(+id);
+    return await this.ventasService.remove(id);
   }
 }
