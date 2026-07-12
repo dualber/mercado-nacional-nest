@@ -49,6 +49,7 @@ export default function GruposPage() {
   };
 
   const handleSubmit = (data) => {
+    console.log("datos enviados", data);
     if (editing) {
       actualizar.mutate(
         { id: editing.id, data },
@@ -95,7 +96,6 @@ export default function GruposPage() {
         initialData={editing}
         submitting={crear.isPending || actualizar.isPending}
       />
-      
     </div>
   );
 }

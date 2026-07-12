@@ -25,7 +25,7 @@ export function createResourceApi(basePath) {
     create: (data) => apiClient.post(basePath, data).then((r) => r.data),
 
     update: (id, data) =>
-      apiClient.put(`${basePath}/${id}`, data).then((r) => r.data),
+      apiClient.patch(`${basePath}/${id}`, data).then((r) => r.data),
 
     remove: (id) => apiClient.delete(`${basePath}/${id}`).then((r) => r.data),
   };

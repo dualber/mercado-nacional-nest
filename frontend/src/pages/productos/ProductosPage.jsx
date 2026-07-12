@@ -29,16 +29,19 @@ export default function ProductosPage() {
   const [editing, setEditing] = useState(null);
 
   const openCreate = () => {
+    
     setEditing(null);
     setModalOpen(true);
   };
 
   const openEdit = (producto) => {
+    console.log(producto)
     setEditing(producto);
     setModalOpen(true);
   };
 
   const handleSubmit = (data) => {
+    console.log(data)
     if (editing) {
       actualizar.mutate(
         { id: editing.id, data },

@@ -20,9 +20,9 @@ export default function DataTable({
   }
 
   return (
-    <div className="overflow-x-auto rounded-xl border border-border bg-surface">
+    <div className="overflow-x-auto rounded-xl border border-border bg-surface w-full-x-auto">
       <table className="w-full text-sm">
-        <thead className="bg-black">
+        <thead className="bg-accent-dark">
           <tr className="border-b border-border bg-gray-50/50 text-left">
             {columns.map((col) => (
               <th

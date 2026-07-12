@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Modal from "../../components/ui/Modal";
-import Field, { Input } from "../../components/ui/Field";
+import Field, { Input, Select } from "../../components/ui/Field";
 import Button from "../../components/ui/Button";
 
 const emptyForm = {
@@ -43,8 +43,12 @@ export default function ClienteFormModal({
       open={open}
       onClose={onClose}
       title={initialData ? "Editar cliente" : "Nuevo cliente"}
+      className="flex justify-center  grid-cols-1 gap-2 mt-6"
     >
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={handleSubmit}
+        className="grid grid-cols-1 lg:grid-cols-2 gap-4"
+      >
         <Field label="Cedula">
           <Input
             name="cedula"
@@ -70,16 +74,21 @@ export default function ClienteFormModal({
           />
         </Field>
         <Field label="Tipo de cuenta">
-          <Input
-            name="tipo de cuenta"
+          <Select
+            name="tipo_cuenta"
             value={form.tipo_cuenta}
             onChange={handleChange}
             required
-          />
+          >
+            <option value="">Seleccione un tipo</option>
+            <option value="Ahorro">Ahorro</option>
+            <option value="corriente">Corriente</option>
+          </Select>
         </Field>
         <Field label="Numero de cuenta">
           <Input
-            name="numero de cuenta"
+            name="numero_cuenta"
+            type="text"
             value={form.numero_cuenta}
             onChange={handleChange}
             required
@@ -96,7 +105,7 @@ export default function ClienteFormModal({
         <Field label="Correo">
           <Input
             type="email"
-            name="email"
+            name="correo"
             value={form.correo}
             onChange={handleChange}
           />
@@ -108,8 +117,7 @@ export default function ClienteFormModal({
             onChange={handleChange}
           />
         </Field>
-
-        <div className="flex justify-end gap-2 mt-6">
+        <div className="lg:col-span-2 flex justify-center gap-2 mt-6">
           <Button type="button" variant="secondary" onClick={onClose}>
             Cancelar
           </Button>

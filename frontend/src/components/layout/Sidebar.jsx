@@ -6,6 +6,7 @@ import {
   Layers,
   ShoppingCart,
   Truck,
+  TreePalm,
 } from "lucide-react";
 
 const navItems = [
@@ -13,8 +14,13 @@ const navItems = [
   { to: "/clientes", label: "Clientes", icon: Users },
   { to: "/productos", label: "Productos", icon: Package },
   { to: "/grupos", label: "Grupos", icon: Layers },
+  {to: "/fincas", label: "Fincas", icon: TreePalm },
   { to: "/ventas", label: "Ventas", icon: ShoppingCart },
   { to: "/recogidas", label: "Recogidas", icon: Truck },
+  { to: "/coteros", label: "Coteros", icon: Layers },
+  { to: "/conductores", label: "Conductores", icon: Truck },
+  { to: "/compras", label: "Compras", icon: ShoppingCart },
+
 ];
 
 export default function Sidebar() {

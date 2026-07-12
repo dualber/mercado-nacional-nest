@@ -49,6 +49,7 @@ export default function ClientesPage() {
   };
 
   const handleSubmit = (data) => {
+    console.log("datos enviados", data);
     if (editing) {
       actualizar.mutate(
         { id: editing.id, data },
@@ -66,7 +67,7 @@ export default function ClientesPage() {
   };
 
   return (
-    <div>
+    <div className="w-[95%] mx-auto py-6 space-y-6">
       <PageHeader
         title="Clientes"
         description="Gestiona la información de tus clientes."

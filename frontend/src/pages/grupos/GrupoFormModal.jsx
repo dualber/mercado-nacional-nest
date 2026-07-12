@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Modal from "../../components/ui/Modal";
-import Field, { Input } from "../../components/ui/Field";
+import Field, { Select,Input } from "../../components/ui/Field";
 import Button from "../../components/ui/Button"
 
 const emptyForm = {
@@ -15,7 +15,7 @@ const emptyForm = {
 export default function GrupoFormModal({
   open,
   onClose,
-  OnSubmit,
+  onSubmit,
   initialData,
   submitting,
 }) {
@@ -31,7 +31,7 @@ export default function GrupoFormModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onsubmit(form);
+    onSubmit(form);
   };
 
   return (
@@ -40,7 +40,7 @@ export default function GrupoFormModal({
     onClose={onClose}
     title={initialData ? "Editar Grupo": "Nuevo Grupo"}
     >
-        <form onsubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <Field label="Nit">
                 <Input
                 name="nit"
@@ -70,11 +70,16 @@ export default function GrupoFormModal({
                 required/>
             </Field>
             <Field label="tipo_cuenta">
-                <Input
+                <Select
                 name="tipo_cuenta"
                 value={form.tipo_cuenta}
                 onChange={handleChange}
-                required/>
+                required
+                >
+                    <option value="">Seleccione un tipo</option>
+            <option value="Ahorro">Ahorro</option>
+            <option value="Corriente">Corriente</option>
+                </Select>
             </Field>
             <Field label="Numero_cuenta">
                 <Input
@@ -90,7 +95,6 @@ export default function GrupoFormModal({
                 <Button type="submit" disabled={submitting}>
                     {submitting ? "Guardando...": "Guardar"}
                 </Button>
-
             </div>
         </form>
     </Modal>

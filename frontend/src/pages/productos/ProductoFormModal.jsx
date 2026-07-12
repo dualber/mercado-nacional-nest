@@ -11,7 +11,7 @@ const emptyForm = {
 export default function ProductoFormModal({
   open,
   onClose,
-  Onsubmit,
+  onSubmit,
   initialData,
   submitting,
 }) {
@@ -22,12 +22,17 @@ export default function ProductoFormModal({
   }, [initialData, open]);
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  const { name, value, type } = e.target;
+
+  setForm({
+    ...form,
+    [name]: type === "number" ? Number(value) : value,
+  });
+};
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onsubmit(form);
+    onSubmit(form);
   };
 
   return (
@@ -36,7 +41,7 @@ export default function ProductoFormModal({
       onClose={onClose}
       title={initialData ? "Editar producto" : "Nuevo Producto"}
     >
-      <form onsubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <Field label="Nombre">
           <Input
             name="nombre"
@@ -47,8 +52,9 @@ export default function ProductoFormModal({
         </Field>
         <Field label="peso">
           <Input
-            name="peso"
+            name="peso_kilo"
             value={form.peso_kilo}
+            type="number"
             onChange={handleChange}
             required
           />
