@@ -21,6 +21,7 @@ const navItems = [
   { to: "/conductores", label: "Conductores", icon: Truck },
   { to: "/compras", label: "Compras", icon: ShoppingCart },
   { to: "/comunales", label: "Comunales", icon: TreePalm },
+  { to: "/vehiculos", label: "Vehiculos", icon: Truck}
 
 ];
 

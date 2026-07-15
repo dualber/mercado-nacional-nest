@@ -65,10 +65,9 @@ export class VehiculosService {
     return vehiculos.map((vehiculo) => ({
       placa: vehiculo.placa,
       marca: vehiculo.marca,
-      descripcion: vehiculo.descripcion,
       capacidad: vehiculo.capacidad,
-      conductor: vehiculo.persona.nombres,
-      rol: vehiculo.persona.roles.map((r) => r.rol.nombre).join(),
+      descripcion: vehiculo.descripcion,
+      conductor: `${vehiculo.persona.nombres} ${vehiculo.persona.apellidos}`,
     }));
   }
 
