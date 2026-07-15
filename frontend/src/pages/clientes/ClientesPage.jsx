@@ -49,7 +49,6 @@ export default function ClientesPage() {
   };
 
   const handleSubmit = (data) => {
-    console.log("datos enviados", data);
     if (editing) {
       actualizar.mutate(
         { id: editing.id, data },

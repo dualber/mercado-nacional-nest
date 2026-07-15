@@ -1,4 +1,3 @@
-import PendingModule from "../../components/ui/PendingModule";
 import { useState } from "react";
 import { Plus } from "lucide-react";
 import { useResource } from "../../hooks/useResource";

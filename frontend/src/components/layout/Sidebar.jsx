@@ -20,6 +20,7 @@ const navItems = [
   { to: "/coteros", label: "Coteros", icon: Layers },
   { to: "/conductores", label: "Conductores", icon: Truck },
   { to: "/compras", label: "Compras", icon: ShoppingCart },
+  { to: "/comunales", label: "Comunales", icon: TreePalm },
 
 ];
 

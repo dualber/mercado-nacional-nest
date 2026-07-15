@@ -6,6 +6,8 @@ import ProductosPage from "../pages/productos/ProductosPage";
 import GruposPage from "../pages/grupos/GruposPage";
 import VentasPage from "../pages/ventas/VentasPage";
 import RecogidasPage from "../pages/recogidas/RecogidasPage";
+import FincasPage from '../pages/fincas/FincasPage'
+import ComunalesPage from '../pages/comunales/ComunalesPage'
 import NotFound from "../pages/NotFound";
 
 /**
@@ -25,7 +27,9 @@ export default function AppRoutes() {
         <Route path="/grupos" element={<GruposPage />} />
         <Route path="/ventas" element={<VentasPage />} />
         <Route path="/recogidas" element={<RecogidasPage />} />
+        <Route path="/fincas" element={<FincasPage/>} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/comunales" element={<ComunalesPage/>}></Route>
       </Route>
     </Routes>
   );
