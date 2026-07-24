@@ -9,12 +9,12 @@ export class CreatePersonaDto {
 
   @IsString()
   @IsNotEmpty({ message: 'Los nombres son obligatorios' })
-  @Matches(/^[aA-zZ]+$/, { message: 'El nombre solo debe contener letras' })
+  @Matches(/^[A-Za-z\s]+$/, { message: 'El nombre solo debe contener letras' })
   nombres: string;
 
   @IsString()
   @IsNotEmpty({ message: 'Los apellidos son obligatorios' })
-  @Matches(/^[aA-zZ]+$/, { message: 'El apellido solo debe contener letras' })
+  @Matches(/^[A-Za-z\s]+$/, { message: 'El apellido solo debe contener letras' })
   apellidos: string;
 
   @IsString({ message: 'El contacto debe ser una cadena de texto' })

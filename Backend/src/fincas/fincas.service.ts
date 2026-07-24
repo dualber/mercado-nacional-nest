@@ -27,19 +27,31 @@ export class FincasService {
       contacto: finca.contacto,
       grupo: finca.grupo.nombre,
       comunal: finca.comunal.nombre,
-      zona: finca.comunal.zona,
     }));
-
   }
 
   async findOne(id: string) {
-    return await this.prisma.fincas.findUnique({ where: { id } });
+    const finca = await this.prisma.fincas.findUnique({
+      where: { id },
+      include: {
+        grupo: true,
+        comunal: true,
+      },
+    });
+
+    return {
+      ibm: finca.ibm,
+      nombre: finca.nombre,
+      contacto: finca.contacto,
+      grupo: finca.grupo.nombre,
+      comunal: finca.comunal.nombre,
+    };
   }
 
   async update(id: string, updateFincaDto: UpdateFincaDto) {
     return await this.prisma.fincas.update({
-      data: updateFincaDto,
       where: { id },
+      data: updateFincaDto,
     });
   }
 

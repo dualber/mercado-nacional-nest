@@ -7,7 +7,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class ComunalesService {
   constructor(private prisma: PrismaService) {}
   async create(createComunaleDto: CreateComunaleDto) {
-    return await this.prisma.comunales.create({data: createComunaleDto});
+    return await this.prisma.comunales.create({data: createComunaleDto });
   }
 
   async findAll() {

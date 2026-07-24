@@ -76,7 +76,7 @@ export default function GrupoFormModal({
                 onChange={handleChange}
                 required
                 >
-                    <option value="">Seleccione un tipo</option>
+            <option value="">Seleccione un tipo</option>
             <option value="Ahorro">Ahorro</option>
             <option value="Corriente">Corriente</option>
                 </Select>

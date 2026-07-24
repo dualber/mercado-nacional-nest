@@ -12,6 +12,7 @@ export class UpdateGrupoDto {
   @IsOptional()
   @IsString()
   @MinLength(3, { message: 'El nombre debe tener al menos 3 caracteres' })
+  @Matches(/^[A-Za-z\s]+$/, { message: 'El nombre solo debe contener letras' })
   nombre?: string;
 
   @IsString()

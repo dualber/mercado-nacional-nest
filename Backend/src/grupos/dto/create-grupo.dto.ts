@@ -10,6 +10,7 @@ export class CreateGrupoDto {
   @IsString()
   @IsNotEmpty()
   @MinLength(3, { message: 'El nombre debe tener al menos 3 caracteres' })
+  @Matches(/^[A-Za-z\s]+$/, { message: 'El nombre solo debe contener letras' })
   nombre: string;
 
   @IsString()

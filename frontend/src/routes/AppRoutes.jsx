@@ -10,6 +10,7 @@ import FincasPage from '../pages/fincas/FincasPage'
 import ComunalesPage from '../pages/comunales/ComunalesPage'
 import NotFound from "../pages/NotFound";
 import VehiculosPage from "../pages/vehiculos/VehiculosPage";
+import PersonasPage from "../pages/personas/PersonasPage";
 
 /**
  * Todas las rutas viven aquí. Para agregar un módulo nuevo:
@@ -32,6 +33,7 @@ export default function AppRoutes() {
         <Route path="*" element={<NotFound />} />
         <Route path="/comunales" element={<ComunalesPage/>}></Route>
         <Route path="/vehiculos" element={<VehiculosPage/>}></Route>
+        <Route path="/personas" element={<PersonasPage/>}></Route>
       </Route>
     </Routes>
   );

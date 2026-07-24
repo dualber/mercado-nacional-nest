@@ -48,7 +48,6 @@ export class PersonasService {
     });
 
     return {
-      id: persona.id,
       cedula: persona.cedula,
       nombres: persona.nombres,
       apellidos: persona.apellidos,

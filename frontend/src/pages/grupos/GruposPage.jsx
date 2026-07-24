@@ -66,7 +66,7 @@ export default function GruposPage() {
   };
 
   return (
-    <div>
+    <div className="w-[95%] mx-auto py-6 space-y-6">
       <PageHeader
         title="Grupos"
         description="Gestiona la información de tus grupos."

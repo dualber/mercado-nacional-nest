@@ -10,12 +10,12 @@ export class UpdatePersonaDto {
   @IsOptional()
   @IsString()
   @IsNotEmpty({ message: 'Los nombres son obligatorios' })
-  @Matches(/^[aA-zZ]+$/, { message: 'El nombre solo debe contener letras' })
+  @Matches(/^[A-Za-z\s]+$/, { message: 'El nombre solo debe contener letras' })
   nombres?: string;
 
   @IsOptional()
   @IsNotEmpty({ message: 'Los apellidos son obligatorios' })
-  @Matches(/^[aA-zZ]+$/, { message: 'El apellido solo debe contener letras' })
+  @Matches(/^[A-Za-z\s]+$/, { message: 'El apellido solo debe contener letras' })
   apellidos?: string;
 
   @IsOptional()
