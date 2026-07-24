@@ -28,6 +28,14 @@ export default function PersonasPage() {
   const { useList, useCreate, useUpdate, useRemove } = useResource("personas", personasApi);
 
   const { data: personas, isLoading } = useList();
+
+//identifar personas con roles.
+  const personasConRol = personas?.map((persona) => ({
+    ...persona,
+    rol: persona.rol || "Sin rol asignado",
+  }));
+
+
   const crear = useCreate();
   const actualizar = useUpdate();
   const eliminar = useRemove();
@@ -64,7 +72,7 @@ export default function PersonasPage() {
     <div className='w-[95%] mx-auto py-6 space-y-6'>
       <PageHeader
       title="Personas"
-      description="Gestiona la informacion de las Personas"
+      descripion="Gestiona la informacion de las Personas"
       action={
         <Button onClick={openCreate}>
           <Plus size={16}/> Nueva Persona
@@ -75,7 +83,7 @@ export default function PersonasPage() {
         <Loader />):(
           <DataTable
           columns={columns}
-          rows={personas}
+          rows={personasConRol}
           onEdit={openEdit}
           onDelete={handleDelete}
           emptyMessage="No hay personas registradas"
